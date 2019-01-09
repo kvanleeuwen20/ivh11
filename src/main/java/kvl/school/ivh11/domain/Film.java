@@ -5,11 +5,12 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Data
 @Table
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Film
 {
     @Getter
@@ -29,7 +30,7 @@ public class Film
     @Setter
     private String description;
 
-    @OneToMany(mappedBy = "film")
-    private List<Screening> screening;
+    @OneToMany(mappedBy = "film", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    private Set<Screening> screening;
 
 }

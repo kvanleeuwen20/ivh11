@@ -12,6 +12,7 @@ import javax.persistence.*;
 @Entity
 @Data
 @Table
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Cinema implements Serializable
 {
     @Id
@@ -26,6 +27,6 @@ public class Cinema implements Serializable
     @Setter
     private String location;
 
-    @OneToMany(mappedBy = "cinema")
-    private List<Screen> screens;
+    @OneToMany(mappedBy = "cinema", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    private Set<Screen> screens;
 }

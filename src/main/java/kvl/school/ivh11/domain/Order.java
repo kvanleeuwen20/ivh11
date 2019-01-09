@@ -11,10 +11,13 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Set;
 import javax.persistence.*;
+import javax.transaction.Transactional;
 
 @Entity
 @Data
 @Table
+@Transactional
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Order extends Observable implements Serializable
 {
     private OrderState orderState;
@@ -31,7 +34,7 @@ public class Order extends Observable implements Serializable
     @Setter
     private LocalDateTime orderTime;
 
-    @OneToMany
+    @OneToMany(mappedBy = "order", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     private Set<Ticket> tickets;
 
     public void setState(OrderState state)

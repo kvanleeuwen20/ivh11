@@ -4,7 +4,6 @@ import lombok.Data;
 import lombok.Setter;
 import lombok.Getter;
 
-import java.util.List;
 import java.util.Set;
 import javax.persistence.*;
 
@@ -29,12 +28,12 @@ public class Screen
 
     @Getter
     @Setter
-    @OneToMany(mappedBy = "screen")
-    private List<Screening> screening;
+    @OneToMany(mappedBy = "screen", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    private Set<Screening> screening;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private Cinema cinema;
 
-    @OneToMany(mappedBy = "screen")
-    private List<Seat> seats;
+    @OneToMany(mappedBy = "screen", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    private Set<Seat> seats;
 }

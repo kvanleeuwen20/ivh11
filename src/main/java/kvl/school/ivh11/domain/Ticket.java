@@ -25,9 +25,13 @@ public class Ticket
     @Setter
     private String description;
 
-    @ManyToOne
+    @JoinColumn(name = "order_id")
+    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    private Order order;
+
+    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     private Screening screening;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Seat seat;
 }

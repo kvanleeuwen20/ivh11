@@ -1,4 +1,8 @@
 package kvl.school.ivh11.repositories.abstr;
 
-public class ApiUserRepo {
+import kvl.school.ivh11.domain.ApiUser;
+
+public interface ApiUserRepo extends BaseRepo<ApiUser, Long>
+{
+    ApiUser getUserByApiKey(String hash);
 }

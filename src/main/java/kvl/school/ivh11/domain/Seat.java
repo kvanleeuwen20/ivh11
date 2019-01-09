@@ -25,9 +25,10 @@ public class Seat
     @Setter
     private boolean isVIP;
 
-    @OneToMany(mappedBy = "seat")
+    @OneToMany(mappedBy = "seat", fetch = FetchType.LAZY)
     private Set<Ticket> tickets;
 
+    @JoinColumn(name = "screen_id")
     @ManyToOne
     private Screen screen;
 }
