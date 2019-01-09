@@ -10,5 +10,4 @@
 
     <!-- Aspect -->
     <bean id="logAspect" class="kvl.school.ivh11.aop.Logging" />
-
 </beans>
