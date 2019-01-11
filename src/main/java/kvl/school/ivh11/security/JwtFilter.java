@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package kvl.school.ivh11.security;
 
 import org.springframework.web.client.RestTemplate;
@@ -59,4 +60,4 @@ public class JwtFilter extends GenericFilterBean {
 
         return id;
     }
-} 
+}
