@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package kvl.school.ivh11.security;
 
 import org.springframework.web.client.RestTemplate;
@@ -12,7 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class JwtFilter extends GenericFilterBean {
+public class JwtFilter extends GenericFilterBean
+{
 
     public void doFilter(final ServletRequest req, final ServletResponse res, final FilterChain chain) throws IOException, ServletException {
 
@@ -20,7 +20,7 @@ public class JwtFilter extends GenericFilterBean {
         final HttpServletResponse response = (HttpServletResponse) res;
         final String authHeader = request.getHeader("authorization");
 
-        if(SecurityConfig.whiteListedIps.contains(req.getRemoteAddr()))
+        if(SecurityConfiguration.whiteListedIps.contains(req.getRemoteAddr()))
         {
             if("OPTIONS".equals(request.getMethod()))
             {

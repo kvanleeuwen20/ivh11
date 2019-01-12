@@ -1,19 +1,21 @@
-//package kvl.school.ivh11.security;
-//
+package kvl.school.ivh11.security;
+
 //import org.springframework.context.annotation.Configuration;
 //import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 //import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 //import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 //
-//import java.util.ArrayList;
-//import java.util.List;
-//
+import java.util.Arrays;
+import java.util.List;
+
+
 //@Configuration
 //@EnableWebSecurity
-//public class SecurityConfig extends WebSecurityConfigurerAdapter {
-//
-//    public static List<String> whiteListedIps = new ArrayList<String>();
-//
+public class SecurityConfiguration
+{
+
+  public static List<String> whiteListedIps = Arrays.asList("80.255.244.6");
+   //
 //    @Override
 //    protected void configure(HttpSecurity http) throws Exception
 //    {
@@ -26,5 +28,5 @@
 //
 //        whiteListedIps.add("90.255.244.6");
 //    }
-//}
+}
 //
