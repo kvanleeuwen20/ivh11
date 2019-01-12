@@ -15,7 +15,6 @@ import org.springframework.web.servlet.theme.ThemeChangeInterceptor;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan({"com.memorynotfound"})
 
 public class WebMVCConfig extends WebMvcConfigurerAdapter
 {

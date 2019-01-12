@@ -20,8 +20,6 @@ import javax.transaction.Transactional;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Order extends Observable implements Serializable
 {
-    private OrderState orderState;
-
     @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
