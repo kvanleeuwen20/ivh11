@@ -30,6 +30,9 @@ public class Order extends Observable implements Serializable
     @Getter
     private OrderState state;
 
+    @ManyToOne
+    private Customer customer;
+
     @Getter
     @Setter
     private LocalDateTime orderTime;

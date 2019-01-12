@@ -19,9 +19,9 @@ public class CinemaServiceTest {
     private final static String location = "Chasséveld 15, 4811 DH Breda";
     private final static String name = "Pathé Breda";
 
-    private final static Screen screenOne;
+    //private final static Screen screenOne;
 
-    private final static Screen screenTwo;
+    //private final static Screen screenTwo;
 
     private Set<Screen> screens;
 
@@ -32,7 +32,7 @@ public class CinemaServiceTest {
         this.cinemaService = cinemaService;
 
         screens = new HashSet<>();
-        screens.add();
+        //screens.add()
     }
     public void initializeDatabase() {
     }
