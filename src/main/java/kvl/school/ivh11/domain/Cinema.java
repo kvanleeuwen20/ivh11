@@ -1,13 +1,14 @@
 package kvl.school.ivh11.domain;
 
+import com.sun.istack.NotNull;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
-import java.util.List;
 import java.util.Set;
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 
 @Entity
 @Data
@@ -21,10 +22,13 @@ public class Cinema implements Serializable
 
     @Getter
     @Setter
+    @NotNull
+    @Size(min = 1, max = 255)
     private String name;
 
     @Getter
     @Setter
+    @NotNull
     private String location;
 
     @OneToMany(mappedBy = "cinema", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
