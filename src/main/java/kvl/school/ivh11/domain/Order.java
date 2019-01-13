@@ -26,6 +26,7 @@ public class Order extends Observable implements Serializable
     private int id;
 
     @Getter
+    @Version
     private OrderState state;
 
     @ManyToOne
@@ -40,14 +41,14 @@ public class Order extends Observable implements Serializable
 
     public void setState(OrderState state)
     {
-        this.orderState = state;
+        this.state = state;
         this.setChanged();
         this.notifyObservers(state);
     }
 
     public OrderState getOrderState()
     {
-        return orderState;
+        return state;
     }
 
 }
