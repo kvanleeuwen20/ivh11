@@ -1,5 +1,8 @@
 package kvl.school.ivh11.service;
 
+import jdk.jfr.internal.LogLevel;
+import jdk.jfr.internal.LogTag;
+import jdk.jfr.internal.Logger;
 import kvl.school.ivh11.cnf.DataSourceConfig;
 import kvl.school.ivh11.domain.*;
 import kvl.school.ivh11.repository.CustomerRepo;
@@ -36,6 +39,7 @@ public class CinemaServiceTest {
     @BeforeClass
     @Sql({"create-database.sql"})
     public static void initializeDatabase() {
+        Logger.log(LogTag.JFR, LogLevel.INFO, "created db");
     }
 
     @AfterClass
