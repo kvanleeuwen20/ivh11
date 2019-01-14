@@ -1,6 +1,7 @@
 package kvl.school.ivh11.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,7 +15,17 @@ import java.util.Set;
 
 @Entity
 @Data
-public class AppUser extends User implements UserDetails {
+public abstract class AppUser implements UserDetails {
+
+    @Setter(AccessLevel.NONE)
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    protected long id;
+
+    protected String name;
+
+    protected String email;
+
     private String username;
 
     private String password;

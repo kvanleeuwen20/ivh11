@@ -1,34 +1,40 @@
 package kvl.school.ivh11.domain;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import lombok.experimental.Tolerate;
 
 import java.util.Set;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Data
 @Table
 public class Seat
 {
-    @Getter
+    @Setter(AccessLevel.NONE)
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private long id;
 
-    @Getter
-    @Setter
+    @NotNull
+    @NonNull
     private int seatNr;
 
-    @Getter
-    @Setter
+    @NonNull
     private boolean isVIP;
 
     @OneToMany(mappedBy = "seat", fetch = FetchType.LAZY)
-    private Set<Ticket> tickets;
+    private transient Set<Ticket> tickets;
 
+    @NotNull
+    @NonNull
     @JoinColumn(name = "screen_id")
     @ManyToOne
     private Screen screen;
+
+    @Tolerate
+    public Seat() {
+
+    }
 }

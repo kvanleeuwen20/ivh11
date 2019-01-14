@@ -1,39 +1,46 @@
 package kvl.school.ivh11.domain;
 
-import lombok.Data;
-import lombok.Setter;
-import lombok.Getter;
+import lombok.*;
+import lombok.experimental.Tolerate;
 
 import java.util.Set;
 import javax.persistence.*;
+import javax.transaction.Transactional;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table
 @Data
+@Transactional
 //zaal
 public class Screen
 {
-    @Getter
+    @Setter(AccessLevel.NONE)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
-    @Getter
-    @Setter
+    @NotNull
+    @NonNull
     private int size;
 
-    @Getter
-    @Setter
+    @NotNull
+    @NonNull
     private int maxSeats;
 
-    @Getter
-    @Setter
     @OneToMany(mappedBy = "screen", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     private Set<Screening> screening;
 
+    @NotNull
+    @NonNull
     @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     private Cinema cinema;
 
     @OneToMany(mappedBy = "screen", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-    private Set<Seat> seats;
+    private transient Set<Seat> seats;
+
+    @Tolerate
+    public Screen() {
+
+    }
 }

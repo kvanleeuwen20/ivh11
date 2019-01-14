@@ -1,63 +1,58 @@
 package kvl.school.ivh11.service;
 
-import kvl.school.ivh11.domain.Cinema;
-import kvl.school.ivh11.domain.Screen;
+import kvl.school.ivh11.cnf.DataSourceConfig;
+import kvl.school.ivh11.domain.*;
+import kvl.school.ivh11.repository.CustomerRepo;
+import kvl.school.ivh11.repository.EmployeeRepo;
+import kvl.school.ivh11.utils.CinemaData;
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Import;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.HashSet;
-import java.util.Set;
-
+@Import(CinemaData.class)
+//@ContextConfiguration(classes = {DataSourceConfig.class})
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class CinemaServiceTest {
-    private final static long id = 1;
-    private final static String location = "Chasséveld 15, 4811 DH Breda";
-    private final static String name = "Pathé Breda";
-
-    //private final static Screen screenOne;
-
-    //private final static Screen screenTwo;
-
-    private Set<Screen> screens;
-
-    private final CinemaService cinemaService;
+    private CinemaData data;
 
     @Autowired
-    public CinemaServiceTest(CinemaService cinemaService) {
-        this.cinemaService = cinemaService;
+    private CinemaService cinemaService;
 
-        screens = new HashSet<>();
-        //screens.add()
+    @Autowired
+    private CustomerRepo customerRepo;
+
+    @Autowired
+    private EmployeeRepo employeeRepo;
+
+    public CinemaServiceTest() {
     }
-    public void initializeDatabase() {
+
+    @BeforeClass
+    @Sql({"create-database.sql"})
+    public static void initializeDatabase() {
     }
 
     @AfterClass
     @Sql({"drop-database.sql"})
-    public void cleanUpDatabase() {
+    public static void cleanUpDatabase() {
     }
 
-
-    @BeforeClass
-    @Sql({"create-database.sql"})
     @Before
     @Sql({"remove-test-data.sql", "insert-test-data.sql"})
     public void setUp() {
+        //this.data = new CinemaData(customerRepo, employeeRepo);
     }
 
     @Test
     public void findCinemasWithId() {
-        Cinema cinema = this.cinemaService.findCinemasWithId(id);
+        Cinema cinema = this.cinemaService.findCinemasWithId(this.data.getId());
 
-        Assert.assertNotNull(cinema);
-        Assert.assertEquals(location, cinema.getLocation());
-        Assert.assertEquals(name, cinema.getName());
-        Assert.assertEquals(location, cinema.getScreens());
-
+        Assert.assertEquals(this.data.getCinema(), cinema);
     }
 }

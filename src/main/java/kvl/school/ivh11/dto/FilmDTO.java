@@ -18,10 +18,8 @@ public class FilmDTO implements Serializable {
 
     public Film toFilm()
     {
-        Film film = new Film();
+        Film film = new Film(this.title, this.duration);
         film.setDescription(this.description);
-        film.setTitle(this.title);
-        film.setDuration(this.duration);
         return film;
     }
 }

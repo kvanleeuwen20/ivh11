@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class CinemaService
 {
-    private CinemaRepo cinemaRepo;
+    private final CinemaRepo cinemaRepo;
 
     @Autowired
     public CinemaService(CinemaRepo cinemaRepo)
@@ -18,6 +18,6 @@ public class CinemaService
 
     public Cinema findCinemasWithId(long id)
     {
-        return cinemaRepo.getCinemasById(id);
+        return cinemaRepo.getOne(id);
     }
 }

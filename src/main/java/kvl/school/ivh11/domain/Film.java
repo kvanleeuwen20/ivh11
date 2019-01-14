@@ -1,8 +1,7 @@
 package kvl.school.ivh11.domain;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import lombok.experimental.Tolerate;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
@@ -17,29 +16,29 @@ import java.util.Set;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Film
 {
-    @Getter
+    @Setter(AccessLevel.NONE)
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Id
-    private Long id;
+    private long id;
 
-    @Getter
-    @Setter
     @NotNull
+    @NonNull
     @Size(min = 1, max = 255, message="{film.titleRightLength}")
     private String title;
 
-    @Getter
-    @Setter
     @NotNull
+    @NonNull
     @Min(30)
     @PositiveOrZero
     private int duration;
 
-    @Getter
-    @Setter
     private String description;
 
     @OneToMany(mappedBy = "film", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-    private Set<Screening> screening;
+    private transient Set<Screening> screening;
 
+    @Tolerate
+    public Film() {
+
+    }
 }

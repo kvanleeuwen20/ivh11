@@ -1,11 +1,11 @@
 package kvl.school.ivh11.domain;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import lombok.experimental.Tolerate;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
@@ -15,33 +15,35 @@ import java.math.BigDecimal;
 @Data
 public class Ticket
 {
-    @Getter
+    @Setter(AccessLevel.NONE)
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private long id;
 
-    @Getter
-    @Setter
+    @NotNull
+    @NonNull
     private BigDecimal price;
 
-    @Getter
-    @Setter
     private String description;
 
-    @Getter
-    @Setter
-    @Version
-    @PositiveOrZero
-    @Size(min = 1, max = 10)
-    private int amount;
-
+    @NotNull
+    @NonNull
     @JoinColumn(name = "order_id")
     @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     private Order order;
 
+    @NotNull
+    @NonNull
     @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     private Screening screening;
 
+    @NotNull
+    @NonNull
     @ManyToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY)
     private Seat seat;
+
+    @Tolerate
+    public Ticket() {
+
+    }
 }

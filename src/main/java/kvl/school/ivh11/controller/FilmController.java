@@ -2,7 +2,6 @@ package kvl.school.ivh11.controller;
 
 import kvl.school.ivh11.domain.Film;
 import kvl.school.ivh11.dto.FilmDTO;
-import kvl.school.ivh11.repository.ApiUserRepo;
 import kvl.school.ivh11.service.FilmService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -17,13 +16,11 @@ import java.util.Set;
 public class FilmController
 {
     private final FilmService filmService;
-    private final ApiUserRepo userRepo;
 
     @Autowired
-    public FilmController(FilmService filmService, ApiUserRepo userRepo)
+    public FilmController(FilmService filmService)
     {
         this.filmService = filmService;
-        this.userRepo = userRepo;
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET, consumes="application/json", produces="application/json")
