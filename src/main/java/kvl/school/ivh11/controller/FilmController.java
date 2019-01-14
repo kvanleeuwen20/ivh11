@@ -38,13 +38,4 @@ public class FilmController
         Film film = filmDTO.toFilm();
         return new ResponseEntity<>(filmService.addFilm(film), HttpStatus.OK);
     }
-
-//    private boolean isAllowIP(List<String> allowedIps, String remoteAddr)
-//    {
-//        for (String allowedIp : allowedIps)
-//        {
-//            return true;
-//        }
-//        return false;
-//    }
 }

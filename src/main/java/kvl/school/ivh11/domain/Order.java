@@ -28,6 +28,7 @@ public class Order extends Observable implements Serializable
     @NonNull
     @Getter(AccessLevel.NONE)
     @Setter(AccessLevel.NONE)
+    @Version
     private OrderState state;
 
     @NonNull
@@ -56,7 +57,7 @@ public class Order extends Observable implements Serializable
 
     @Tolerate
     public Order() {
-
+        
     }
 
 }
