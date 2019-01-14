@@ -1,6 +1,9 @@
 package kvl.school.ivh11.domain.Abstr;
 
+import kvl.school.ivh11.domain.Customer;
 import kvl.school.ivh11.domain.Order;
+import kvl.school.ivh11.domain.Screening;
+import kvl.school.ivh11.domain.Seat;
 
 public abstract class OrderBuilder
 {
@@ -16,7 +19,7 @@ public abstract class OrderBuilder
         order = new Order();
     }
 
-    public abstract void setScreening();
-    public abstract void setCustomer();
-    public abstract void addSeat();
+    public abstract void setScreening(Long tid, Screening screening);
+    public abstract void setCustomer(long oid, Customer customer);
+    public abstract void addSeat(long oid, Seat seat);
 }

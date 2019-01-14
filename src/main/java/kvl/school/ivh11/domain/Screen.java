@@ -3,10 +3,12 @@ package kvl.school.ivh11.domain;
 import lombok.*;
 import lombok.experimental.Tolerate;
 
+import java.time.LocalDate;
 import java.util.Set;
 import javax.persistence.*;
 import javax.transaction.Transactional;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table
@@ -19,6 +21,13 @@ public class Screen
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @NotNull
+    private LocalDate date;
+
+    @NotNull
+    @Size(min = 1, max = 255)
+    private String room;
 
     @NotNull
     @NonNull
