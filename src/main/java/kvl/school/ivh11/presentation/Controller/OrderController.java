@@ -1,14 +1,12 @@
 package kvl.school.ivh11.presentation.Controller;
 
+import kvl.school.ivh11.domain.Screening;
 import kvl.school.ivh11.service.OrderService;
-import kvl.school.ivh11.service.abstr.PSPProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class OrderController
@@ -22,14 +20,19 @@ public class OrderController
     }
 
     @GetMapping("/getTickets")
-    public String greeting(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model) {
-        model.addAttribute("name", name);
+    public String getAvailabileScreenings(@RequestParam(name="mvid", required=true, defaultValue=0) String mvid, Model model) {
+        model.addAttribute("name", mvid);
         return "greeting";
     }
 
-    @RequestMapping(value = "/checkout", method = RequestMethod.POST)
-    public ViewAndModel checkout()
+    @PostMapping(value = "/checkout")
+    public ModelAndView addTicketToOrder(@ModelAttribute Screening screen)
     {
+        orderService.addTicket(screen);
+    }
 
+    public ModelAndView getOrderSummary()
+    {
+        return "summary"
     }
 }
