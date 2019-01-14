@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MollieProxy implements PSPProxy
+public class PaymentProxy implements PSPProxy
 {
     private HashMap<String, String> config;
     private boolean isServiceAvailable = false;
@@ -23,12 +23,12 @@ public class MollieProxy implements PSPProxy
     public String process(Order o)
     {
         String response = "error";
-        if(o.getState() == OrderState.PENDING)
+        if(o.getOrderState() == OrderState.PENDING)
             response = "wait";
         else{
             HttpHeaders httpHeaders = new HttpHeaders();
             httpHeaders.set("Accept", MediaType.APPLICATION_JSON_VALUE);
-            final String url = config.get("mollieApiHost");
+            final String url = config.get("apiHost");
             Map<String, String> params = new HashMap<String, String>();
             params.put("apiKey", config.get("apiKey"));
             HttpEntity<?> httpEntity = new HttpEntity<>(httpHeaders);
@@ -53,7 +53,7 @@ public class MollieProxy implements PSPProxy
 
     private ModelAndView showWaitView(Order o)
     {
-        return
+        return null;
     }
 
 }

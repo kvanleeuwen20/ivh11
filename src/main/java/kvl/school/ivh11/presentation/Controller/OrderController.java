@@ -11,17 +11,17 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class OrderController
 {
-    @Autowired
     private OrderService orderService;
 
+    @Autowired
     public OrderController(OrderService orderService)
     {
         this.orderService = orderService;
     }
 
     @GetMapping("/getTickets")
-    public String getAvailabileScreenings(@RequestParam(name="mvid", required=true, defaultValue=0) String mvid, Model model) {
-        model.addAttribute("name", mvid);
+    public String getAvailableScreenings(@RequestParam(name="mvID", required=true, defaultValue = "-1") String myID, Model model) {
+        model.addAttribute("name", myID);
         return "greeting";
     }
 
@@ -29,10 +29,12 @@ public class OrderController
     public ModelAndView addTicketToOrder(@ModelAttribute Screening screen)
     {
         orderService.addTicket(screen);
+        return null;
     }
 
     public ModelAndView getOrderSummary()
     {
-        return "summary"
+        // TODO
+        return null;
     }
 }

@@ -16,6 +16,7 @@ public abstract class PaymentServiceProvider implements PaymentStrategy
     }
 
     public String buildRequestUri(String url) throws IOException {
-
+        //ToDo
+        return null;
     }
 }
