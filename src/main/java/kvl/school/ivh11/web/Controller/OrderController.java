@@ -1,7 +1,10 @@
-package kvl.school.ivh11.presentation.Controller;
+package kvl.school.ivh11.web.Controller;
 
+import kvl.school.ivh11.domain.Payment;
 import kvl.school.ivh11.domain.Screening;
-import kvl.school.ivh11.service.OrderService;
+import kvl.school.ivh11.service.abstr.PaymentProvider;
+import kvl.school.ivh11.service.impl.OrderService;
+import kvl.school.ivh11.service.impl.PaymentProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,6 +38,8 @@ public class OrderController
     public ModelAndView getOrderSummary()
     {
         // TODO
+        PaymentProxy p = new PaymentProxy();
+        p.createNewPayment(new Payment())
         return null;
     }
 }

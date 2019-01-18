@@ -1,8 +1,10 @@
 package kvl.school.ivh11.domain;
 
+import kvl.school.ivh11.domain.Abstr.DomainObject;
 import lombok.*;
 import lombok.experimental.Tolerate;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -14,7 +16,7 @@ import javax.validation.constraints.NotNull;
 /**
  * Vertoning
  */
-public class Screening
+public class Screening extends DomainObject
 {
     @Setter(AccessLevel.NONE)
     @Id
@@ -36,7 +38,7 @@ public class Screening
 
     @NotNull
     @NonNull
-    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Screen screen;
 
     @Tolerate

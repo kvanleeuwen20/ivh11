@@ -1,6 +1,7 @@
-package kvl.school.ivh11.domain;
+package kvl.school.ivh11.domain.Abstr;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import kvl.school.ivh11.domain.Authority;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;

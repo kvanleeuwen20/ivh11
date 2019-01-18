@@ -13,16 +13,22 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
     private static final String RESOURCE_ID = "resource-server-rest-api";
     private static final String SECURED_READ_SCOPE = "#oauth2.hasScope('read')";
     private static final String SECURED_WRITE_SCOPE = "#oauth2.hasScope('write')";
+    private static final String UNSECURED_PATH = "/api/movies/**";
     private static final String SECURED_PATTERN = "/secured/**";
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) {
         resources.resourceId(RESOURCE_ID);
     }
     @Override
-    public void configure(HttpSecurity http) throws Exception {
-        http.requestMatchers()
-                .antMatchers(SECURED_PATTERN).and().authorizeRequests()
-                .antMatchers(HttpMethod.POST, SECURED_PATTERN).access(SECURED_WRITE_SCOPE)
-                .anyRequest().access(SECURED_READ_SCOPE);
-    }
+    public void configure(HttpSecurity http) throws Exception
+    {
+//        http.requestMatchers()
+//                .antMatchers(SECURED_PATTERN).and().authorizeRequests()
+//                .antMatchers(HttpMethod.POST, SECURED_PATTERN).access(SECURED_WRITE_SCOPE)
+//                .antMatchers(HttpMethod.GET, UNSECURED_PATH).permitAll()
+//                .anyRequest().access(SECURED_READ_SCOPE);
+
+        http.authorizeRequests().antMatchers(HttpMethod.GET,"/films/**").permitAll();
+        http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/movies/**").permitAll();
+  }
 }

@@ -23,8 +23,8 @@ public class FilmController
         this.filmService = filmService;
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.GET, consumes="application/json", produces="application/json")
-    ResponseEntity<Set<Film>> getAll()
+    @RequestMapping(value = "/", method = RequestMethod.GET, produces="application/json")
+    ResponseEntity<Set<FilmDTO>> getAll()
     {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json");
@@ -35,7 +35,6 @@ public class FilmController
     @RequestMapping(value = "/", method = RequestMethod.POST, consumes="application/json", produces="application/json")
     ResponseEntity<Long> addFilm(@RequestBody FilmDTO filmDTO)
     {
-        Film film = filmDTO.toFilm();
-        return new ResponseEntity<>(filmService.addFilm(film), HttpStatus.OK);
+        return new ResponseEntity<>(filmService.addFilm(filmDTO), HttpStatus.OK);
     }
 }

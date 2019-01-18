@@ -1,5 +1,6 @@
 package kvl.school.ivh11.domain;
 
+import kvl.school.ivh11.domain.Abstr.AppUser;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;

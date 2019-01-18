@@ -1,5 +1,6 @@
 package kvl.school.ivh11.domain;
 
+import kvl.school.ivh11.domain.Abstr.DomainObject;
 import lombok.*;
 import lombok.experimental.Tolerate;
 
@@ -15,15 +16,12 @@ import javax.validation.constraints.Size;
 @Data
 @Transactional
 //zaal
-public class Screen
+public class Screen extends DomainObject
 {
     @Setter(AccessLevel.NONE)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
-    @NotNull
-    private LocalDate date;
 
     @NotNull
     @Size(min = 1, max = 255)

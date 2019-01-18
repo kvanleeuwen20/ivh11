@@ -1,28 +1,14 @@
 package kvl.school.ivh11.service.impl;
 
-import org.springframework.web.servlet.view.RedirectView;
-import java.io.IOException;
+import kvl.school.ivh11.service.PaymentResult;
+import kvl.school.ivh11.service.abstr.PaymentProviderIssuer;
 
-public class MolliePSP extends PaymentServiceProvider
+public class MolliePSP extends PaymentProviderIssuer
 {
     @Override
-    public RedirectView preparePayment() throws IOException
+    protected void completeRequest(PaymentResult result)
     {
-        String url = cnf.get("mollieApiEndUrl");
+        //send mail and show message
 
-        String response = buildRequestUri(url);
-        RedirectView redirectView = new RedirectView();
-        redirectView.setUrl(response);
-        return redirectView;
-    }
-
-    public void processFeedback(String trixid)
-    {
-
-    }
-
-    public boolean isPaymentSuccessfull()
-    {
-        return false;
     }
 }
