@@ -4,7 +4,7 @@ import kvl.school.ivh11.domain.Order;
 
 import java.util.HashMap;
 
-public class PaymentProvider implements PSPContract
+public abstract class PaymentProvider implements PSPContract
 {
     protected HashMap<String, String> cnf;
     private Order order;
@@ -14,14 +14,16 @@ public class PaymentProvider implements PSPContract
         this.cnf = cnf;
     }
 
-
     public void setOrder(Order o)
     {
         this.order = o;
     }
+    protected final Order getOrder() { return order; }
 
-    public boolean canCheckout()
+    protected boolean canCheckout()
     {
         return cnf.containsKey("apiHost") && cnf.containsKey("apiKey");
     }
+
+    public abstract String getCheckOutUrl();
 }

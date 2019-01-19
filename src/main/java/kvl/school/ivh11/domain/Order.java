@@ -47,9 +47,6 @@ public class Order extends Observable implements Serializable
     @OneToMany(mappedBy = "order", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     private transient Set<Ticket> tickets;
 
-    private PaymentProvider pAymentProvider;
-
-
     public void setState(OrderState state)
     {
         this.state = state;
@@ -61,16 +58,7 @@ public class Order extends Observable implements Serializable
     {
         return state;
     }
-
-    public void setPaymentProvider(PaymentProvider provider)
-    {
-        this.pAymentProvider = provider;
-    }
-
-    public PaymentProvider getpAymentProvider()
-    {
-        return pAymentProvider;
-    }
+    
 
     @Tolerate
     public Order() {

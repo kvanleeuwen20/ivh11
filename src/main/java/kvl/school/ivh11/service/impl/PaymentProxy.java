@@ -10,23 +10,21 @@ public class PaymentProxy implements PSPContract
 {
     private Payment payment;
 
-    public boolean createNewPayment(Payment payment)
+    public void createNewPayment(Payment payment)
     {
         this.payment = payment;
     }
 
-    public String getCheckOutUrl(Payment payment)
+    public String getCheckOutUrl()
     {
-        String response = "";
+        String response;
         if(payment.getOrder().getOrderState() == OrderState.PENDING)
             response = "wait";
-        else
-            if(payment.getPaymentProvider().canCheckout())
-            {
-                MolliePSP m = new MolliePSP();
-                String url = m.getCheckOutUrl(payment.getOrder());
-            }
-
+        else{
+            response = payment.getPaymentProvider().getCheckOutUrl();
+            if(response.length() < 2)
+                response = "error";
+        }
         return response;
     }
 

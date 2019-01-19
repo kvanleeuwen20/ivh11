@@ -1,15 +1,19 @@
 package kvl.school.ivh11.service.impl;
 
-import kvl.school.ivh11.service.PaymentResult;
+import kvl.school.ivh11.service.abstr.PaymentProvider;
 
-public class MolliePSP extends JSONPaymentProcessorImpl
+public class MolliePSP extends PaymentProvider
 {
-    private String name;
+    private JSONPaymentProcessorImpl jsonPaymentProcessor;
+
+    public MolliePSP(JSONPaymentProcessorImpl jsonPaymentProcessor)
+    {
+        this.jsonPaymentProcessor = jsonPaymentProcessor;
+    }
 
     @Override
-    protected void completeRequest(PaymentResult result)
+    public String getCheckOutUrl()
     {
-        //send mail and show message
-
+        return jsonPaymentProcessor.getCheckOutUrl(this.getOrder());
     }
 }
