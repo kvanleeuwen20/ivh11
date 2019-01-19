@@ -1,5 +1,6 @@
 package kvl.school.ivh11.domain;
 
+import kvl.school.ivh11.domain.Abstr.DomainObject;
 import lombok.*;
 import lombok.experimental.Tolerate;
 
@@ -14,12 +15,19 @@ import java.util.Set;
 @Data
 @Table
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public class Film
+@EqualsAndHashCode(callSuper = false)
+
+@NamedQuery(
+        name = "findMoviesByDuration",
+        query = "SELECT f FROM Film f WHERE f.duration LIKE :duration ORDER BY f.duration"
+)
+
+public class Film extends DomainObject
 {
     @Setter(AccessLevel.NONE)
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Id
-    private long id;
+    private Long id;
 
     @NotNull
     @NonNull
@@ -35,7 +43,8 @@ public class Film
     private String description;
 
     @OneToMany(mappedBy = "film", cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
-    private transient Set<Screening> screening;
+    @EqualsAndHashCode.Exclude
+    private Set<Screening> screening;
 
     @Tolerate
     public Film() {

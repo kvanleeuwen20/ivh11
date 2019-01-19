@@ -1,59 +1,41 @@
 package kvl.school.ivh11.service.impl;
 
-import com.jayway.jsonpath.JsonPath;
 import kvl.school.ivh11.domain.Order;
 import kvl.school.ivh11.domain.OrderState;
-import kvl.school.ivh11.service.abstr.PSPProxy;
-import org.springframework.http.*;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.web.servlet.ModelAndView;
+import kvl.school.ivh11.domain.Payment;
+import kvl.school.ivh11.service.abstr.PSPContract;
 import java.util.HashMap;
-import java.util.Map;
 
-public class PaymentProxy implements PSPProxy
+public class PaymentProxy implements PSPContract
 {
-    private HashMap<String, String> config;
-    private boolean isServiceAvailable = false;
-    private void setConfigParams(HashMap<String, String> params)
+    private Payment payment;
+
+    public void createNewPayment(Payment payment)
     {
-        this.config = params;
+        this.payment = payment;
     }
 
-    @Override
-    public String process(Order o)
+    public String getCheckOutUrl()
     {
-        String response = "error";
-        if(o.getOrderState() == OrderState.PENDING)
+        String response;
+        if(payment.getOrder().getOrderState() == OrderState.PENDING)
             response = "wait";
         else{
-            HttpHeaders httpHeaders = new HttpHeaders();
-            httpHeaders.set("Accept", MediaType.APPLICATION_JSON_VALUE);
-            final String url = config.get("apiHost");
-            Map<String, String> params = new HashMap<String, String>();
-            params.put("apiKey", config.get("apiKey"));
-            HttpEntity<?> httpEntity = new HttpEntity<>(httpHeaders);
-            RestTemplate restTemplate = new RestTemplate();
-            Object r = restTemplate.exchange(url, HttpMethod.GET, httpEntity, String.class);
-
-            if (((ResponseEntity) r).getStatusCode().is2xxSuccessful())
-            {
-                String output = (String)((ResponseEntity) r).getBody();
-                String read = JsonPath.read(output, "$._links.[self].href");
-
-                response = read;
-            }
+            response = payment.getPaymentProvider().getCheckOutUrl();
+            if(response.length() < 2)
+                response = "error";
         }
         return response;
     }
 
-    private ModelAndView doContinueCheckout(String url)
+    @Override
+    public void setConfigParams(HashMap<String, String> cnf)
     {
-        return new ModelAndView("redirect:" + url);
+        payment.getPaymentProvider().setConfigParams(cnf);
     }
 
-    private ModelAndView showWaitView(Order o)
-    {
-        return null;
-    }
+    @Override
+    public void setOrder(Order o) {
 
+    }
 }

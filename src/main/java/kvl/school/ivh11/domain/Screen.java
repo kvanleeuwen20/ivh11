@@ -1,9 +1,9 @@
 package kvl.school.ivh11.domain;
 
+import kvl.school.ivh11.domain.Abstr.DomainObject;
 import lombok.*;
 import lombok.experimental.Tolerate;
 
-import java.time.LocalDate;
 import java.util.Set;
 import javax.persistence.*;
 import javax.transaction.Transactional;
@@ -14,16 +14,14 @@ import javax.validation.constraints.Size;
 @Table
 @Data
 @Transactional
-//zaal
-public class Screen
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@EqualsAndHashCode(callSuper = false)
+public class Screen extends DomainObject
 {
     @Setter(AccessLevel.NONE)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
-    @NotNull
-    private LocalDate date;
+    private Long id;
 
     @NotNull
     @Size(min = 1, max = 255)

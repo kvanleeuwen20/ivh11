@@ -23,7 +23,8 @@ public class ThymeleafConfig implements WebMvcConfigurer, ApplicationContextAwar
 
     private ApplicationContext applicationContext;
 
-    public void setApplicationContext(ApplicationContext applicationContext) {
+    public void setApplicationContext(ApplicationContext applicationContext)
+    {
         this.applicationContext = applicationContext;
     }
 

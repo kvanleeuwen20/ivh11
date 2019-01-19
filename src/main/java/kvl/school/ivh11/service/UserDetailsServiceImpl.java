@@ -1,9 +1,8 @@
 package kvl.school.ivh11.service;
 
-import kvl.school.ivh11.domain.AppUser;
+import kvl.school.ivh11.domain.Abstr.AppUser;
 import kvl.school.ivh11.repository.AppUserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

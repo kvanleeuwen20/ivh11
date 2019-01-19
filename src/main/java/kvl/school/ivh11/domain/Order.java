@@ -3,21 +3,25 @@ package kvl.school.ivh11.domain;
 
 import java.util.Observable;
 
+import kvl.school.ivh11.service.abstr.PaymentProvider;
 import lombok.*;
 import lombok.experimental.Tolerate;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Set;
 import javax.persistence.*;
-import javax.transaction.Transactional;
+
 import javax.validation.constraints.NotNull;
 
 @Entity
 @Data
 @Table
-@Transactional
+@Transactional(isolation=Isolation.READ_COMMITTED)
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@EqualsAndHashCode(callSuper = false)
 public class Order extends Observable implements Serializable
 {
     @Setter(AccessLevel.NONE)
@@ -54,6 +58,7 @@ public class Order extends Observable implements Serializable
     {
         return state;
     }
+
 
     @Tolerate
     public Order() {

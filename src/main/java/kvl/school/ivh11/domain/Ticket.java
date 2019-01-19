@@ -1,24 +1,23 @@
 package kvl.school.ivh11.domain;
 
+import kvl.school.ivh11.domain.Abstr.DomainObject;
 import lombok.*;
 import lombok.experimental.Tolerate;
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.PositiveOrZero;
-import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 
 @Entity
 @Table
 @Data
-public class Ticket
+@EqualsAndHashCode(callSuper = false)
+public class Ticket extends DomainObject
 {
     @Setter(AccessLevel.NONE)
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 
     @NotNull
     @NonNull

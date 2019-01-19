@@ -1,5 +1,6 @@
 package kvl.school.ivh11.domain;
 
+import kvl.school.ivh11.domain.Abstr.DomainObject;
 import lombok.*;
 import lombok.experimental.Tolerate;
 
@@ -14,12 +15,13 @@ import javax.validation.constraints.NotNull;
 /**
  * Vertoning
  */
-public class Screening
+@EqualsAndHashCode(callSuper = false)
+public class Screening extends DomainObject
 {
     @Setter(AccessLevel.NONE)
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 
     @NotNull
     @NonNull
@@ -36,7 +38,7 @@ public class Screening
 
     @NotNull
     @NonNull
-    @ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     private Screen screen;
 
     @Tolerate

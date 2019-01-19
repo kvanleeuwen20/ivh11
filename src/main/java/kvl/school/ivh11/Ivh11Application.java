@@ -13,9 +13,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import java.time.LocalDateTime;
 
-@SpringBootApplication(scanBasePackages = {"kvl.school.ivh11.controller", "kvl.school.ivh11.service", "kvl.school.ivh11.security", "kvl.school.ivh11.cnf"})
+@SpringBootApplication(scanBasePackages = {"kvl.school.ivh11.controller", "kvl.school.ivh11.service", "kvl.school.ivh11.security", "kvl.school.ivh11.cnf", "kvl.school.ivh11.web.Controller"})
 @EntityScan("kvl.school.ivh11.domain")
 @EnableJpaRepositories("kvl.school.ivh11.repository")
+
 public class Ivh11Application
 {
     public static void main(String[] args) {

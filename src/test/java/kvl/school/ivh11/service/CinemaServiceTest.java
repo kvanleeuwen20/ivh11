@@ -3,6 +3,7 @@ package kvl.school.ivh11.service;
 import kvl.school.ivh11.domain.*;
 import kvl.school.ivh11.repository.CustomerRepo;
 import kvl.school.ivh11.repository.EmployeeRepo;
+import kvl.school.ivh11.service.abstr.CinemaService;
 import kvl.school.ivh11.utils.CinemaData;
 import org.junit.*;
 import org.junit.runner.RunWith;

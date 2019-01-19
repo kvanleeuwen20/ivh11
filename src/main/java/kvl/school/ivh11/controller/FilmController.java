@@ -8,6 +8,8 @@ import kvl.school.ivh11.repository.FilmRepo;
 import kvl.school.ivh11.repository.ScreenRepo;
 import kvl.school.ivh11.repository.ScreeningRepo;
 import kvl.school.ivh11.service.FilmService;
+import kvl.school.ivh11.dto.FilmDTO;
+import kvl.school.ivh11.service.abstr.FilmService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -41,8 +43,8 @@ public class FilmController
         this.filmService = filmService;
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.GET, produces="application/json")
-    ResponseEntity<Set<Film>> getAll()
+    @RequestMapping(value = "/all", method = RequestMethod.GET, produces="application/json")
+    ResponseEntity<Set<FilmDTO>> getAll()
     {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json");
@@ -63,10 +65,9 @@ public class FilmController
         return new ResponseEntity<>(filmService.getFilms(), headers, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.POST, consumes="application/json", produces="application/json")
+    @RequestMapping(value = "/add", method = RequestMethod.POST, consumes="application/json", produces="application/json")
     ResponseEntity<Long> addFilm(@RequestBody FilmDTO filmDTO)
     {
-        Film film = filmDTO.toFilm();
-        return new ResponseEntity<>(filmService.addFilm(film), HttpStatus.OK);
+        return new ResponseEntity<>(filmService.addFilm(filmDTO), HttpStatus.OK);
     }
 }

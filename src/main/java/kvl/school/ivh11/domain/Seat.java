@@ -1,5 +1,6 @@
 package kvl.school.ivh11.domain;
 
+import kvl.school.ivh11.domain.Abstr.DomainObject;
 import lombok.*;
 import lombok.experimental.Tolerate;
 
@@ -10,12 +11,13 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Data
 @Table
-public class Seat
+@EqualsAndHashCode(callSuper = false)
+public class Seat extends DomainObject
 {
     @Setter(AccessLevel.NONE)
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 
     @NotNull
     @NonNull

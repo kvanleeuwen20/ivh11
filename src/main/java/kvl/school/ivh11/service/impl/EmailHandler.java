@@ -4,11 +4,9 @@ import kvl.school.ivh11.service.abstr.CommunicationHandler;
 
 public class EmailHandler extends CommunicationHandler
 {
-    private EmailData data;
-
     public EmailHandler(EmailData data)
     {
-        this.data = data;
+        super(data);
     }
 
     @Override
@@ -19,12 +17,6 @@ public class EmailHandler extends CommunicationHandler
 
     @Override
     protected void setContent()
-    {
-
-    }
-
-    @Override
-    protected void send()
     {
 
     }
