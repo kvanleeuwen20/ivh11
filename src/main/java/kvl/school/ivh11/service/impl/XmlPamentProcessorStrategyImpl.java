@@ -18,4 +18,14 @@ public class XmlPamentProcessorStrategyImpl extends XmlPamentProcessorStrategy
     protected String getCheckOutUrl(Order o) {
         return null;
     }
+
+    @Override
+    public void setName(String name) {
+
+    }
+
+    @Override
+    public String getName() {
+        return null;
+    }
 }

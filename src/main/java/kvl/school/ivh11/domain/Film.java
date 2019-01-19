@@ -15,6 +15,7 @@ import java.util.Set;
 @Data
 @Table
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@EqualsAndHashCode(callSuper = false)
 
 @NamedQuery(
         name = "findMoviesByDuration",
@@ -26,7 +27,7 @@ public class Film extends DomainObject
     @Setter(AccessLevel.NONE)
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Id
-    private long id;
+    private Long id;
 
     @NotNull
     @NonNull

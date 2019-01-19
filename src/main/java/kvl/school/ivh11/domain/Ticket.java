@@ -11,12 +11,13 @@ import java.math.BigDecimal;
 @Entity
 @Table
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class Ticket extends DomainObject
 {
     @Setter(AccessLevel.NONE)
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 
     @NotNull
     @NonNull

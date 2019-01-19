@@ -15,7 +15,6 @@ public class PaymentProxy implements PSPContract
         this.payment = payment;
     }
 
-    @Override
     public String getCheckOutUrl(Payment payment)
     {
         String response = "";

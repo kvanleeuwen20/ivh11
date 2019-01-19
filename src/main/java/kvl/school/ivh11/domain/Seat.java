@@ -11,12 +11,13 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Data
 @Table
+@EqualsAndHashCode(callSuper = false)
 public class Seat extends DomainObject
 {
     @Setter(AccessLevel.NONE)
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 
     @NotNull
     @NonNull

@@ -1,8 +1,7 @@
 package kvl.school.ivh11.controller;
 
-import kvl.school.ivh11.domain.Film;
 import kvl.school.ivh11.dto.FilmDTO;
-import kvl.school.ivh11.service.FilmService;
+import kvl.school.ivh11.service.abstr.FilmService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

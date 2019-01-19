@@ -2,6 +2,7 @@ package kvl.school.ivh11.domain;
 
 import kvl.school.ivh11.domain.Abstr.AppUser;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,6 +11,7 @@ import java.util.Set;
 
 @Entity
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class Customer extends AppUser
 {
     @Getter
@@ -18,4 +20,5 @@ public class Customer extends AppUser
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     private transient Set<Order> orders;
+
 }

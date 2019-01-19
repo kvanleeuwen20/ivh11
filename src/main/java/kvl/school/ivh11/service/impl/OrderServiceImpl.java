@@ -7,8 +7,7 @@ import kvl.school.ivh11.repository.OrderRepo;
 import kvl.school.ivh11.service.abstr.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service("orderService")
 @Transactional(rollbackFor = OrderException.class)

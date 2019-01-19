@@ -7,7 +7,7 @@ public class SmsHandler extends CommunicationHandler
     private SmsData data;
 
     public SmsHandler(SmsData data) {
-        this.data = data;
+        super(data);
     }
 
     @Override

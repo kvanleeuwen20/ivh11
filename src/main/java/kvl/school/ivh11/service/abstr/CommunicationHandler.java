@@ -15,7 +15,7 @@ public abstract class CommunicationHandler
 
     public final void send()
     {
-        setReceiver(data);
-        setContent(data);
+        setReceiver();
+        setContent();
     }
 }
