@@ -12,7 +12,6 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 
 @Getter
-@TestConfiguration
 public class CinemaData {
     private final long id = 0;
     private final String location = "Chasséveld 15, 4811 DH Breda";
