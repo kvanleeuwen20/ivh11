@@ -2,7 +2,9 @@ package kvl.school.ivh11.web.Controller;
 
 import kvl.school.ivh11.domain.Payment;
 import kvl.school.ivh11.domain.Screening;
+import kvl.school.ivh11.service.abstr.OrderService;
 import kvl.school.ivh11.service.abstr.PaymentProvider;
+import kvl.school.ivh11.service.impl.MolliePSP;
 import kvl.school.ivh11.service.impl.OrderService;
 import kvl.school.ivh11.service.impl.PaymentProxy;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +41,7 @@ public class OrderController
     {
         // TODO
         PaymentProxy p = new PaymentProxy();
-        p.createNewPayment(new Payment())
+        p.createNewPayment(new Payment(new MolliePSP()));
         return null;
     }
 }

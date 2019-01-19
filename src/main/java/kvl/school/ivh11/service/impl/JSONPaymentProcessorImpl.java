@@ -1,18 +1,26 @@
 package kvl.school.ivh11.service.impl;
 
 import com.jayway.jsonpath.JsonPath;
+import com.sun.xml.internal.xsom.impl.scd.Iterators;
+import kvl.school.ivh11.Components.Messages;
 import kvl.school.ivh11.domain.Order;
+import kvl.school.ivh11.domain.OrderState;
 import kvl.school.ivh11.service.PaymentResult;
+import kvl.school.ivh11.service.abstr.CommunicationHandler;
 import kvl.school.ivh11.service.abstr.JsonPaymentProcessorStrategy;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class JSONPaymentProcessorImpl extends JsonPaymentProcessorStrategy
 {
     private HashMap<String, String> cnf;
+    private String name;
+
+    @Autowired
+    Messages message;
 
     @Override
     protected void setParams(HashMap<String, String> cnf)
@@ -44,7 +52,37 @@ public class JSONPaymentProcessorImpl extends JsonPaymentProcessorStrategy
     }
 
     @Override
-    protected void completeRequest(PaymentResult result) {
+    protected void completeRequest(PaymentResult result)
+    {
+        if(result.getState().getState() == "PAID")
+        {
+            result.getPayment().getOrder().setState(OrderState.PAID);
+            //in this example we sent a sms
 
+            String messageData[] = { result.getPayment().getOrder().getCustomer().getName(), String.valueOf(result.getPayment().getOrder().getId()) };
+            String msg = message.get("smsMesage.sendOrderNotificationWherePaid", messageData, Locale.ENGLISH);
+
+            SmsData data = new SmsData();
+            data.setMessage(msg);
+            data.setReceiver(result.getPayment().getOrder().getCustomer().getMobNr());
+            CommunicationHandler cm = new SmsHandler(data);
+            cm.send();
+        }
+    }
+
+    private void redirect(Order o)
+    {
+
+    }
+
+    @Override
+    public void setName(String name)
+    {
+        this.name = name;
+    }
+
+    @Override
+    public String getName() {
+        return null;
     }
 }

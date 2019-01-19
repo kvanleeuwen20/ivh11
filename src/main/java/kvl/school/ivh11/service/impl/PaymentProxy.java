@@ -22,7 +22,11 @@ public class PaymentProxy implements PSPContract
         if(payment.getOrder().getOrderState() == OrderState.PENDING)
             response = "wait";
         else
-            response = payment.getPaymentProvider().getCheckOutUrl(payment.getOrder());
+            if(payment.getPaymentProvider().canCheckout())
+            {
+                MolliePSP m = new MolliePSP();
+                String url = m.getCheckOutUrl(payment.getOrder());
+            }
 
         return response;
     }
@@ -31,5 +35,10 @@ public class PaymentProxy implements PSPContract
     public void setConfigParams(HashMap<String, String> cnf)
     {
         payment.getPaymentProvider().setConfigParams(cnf);
+    }
+
+    @Override
+    public void setOrder(Order o) {
+
     }
 }

@@ -15,7 +15,7 @@ import javax.validation.constraints.Size;
 @Table
 @Data
 @Transactional
-//zaal
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Screen extends DomainObject
 {
     @Setter(AccessLevel.NONE)

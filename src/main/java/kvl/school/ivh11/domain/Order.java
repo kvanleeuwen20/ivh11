@@ -6,6 +6,7 @@ import java.util.Observable;
 import kvl.school.ivh11.service.abstr.PaymentProvider;
 import lombok.*;
 import lombok.experimental.Tolerate;
+import org.springframework.transaction.annotation.Isolation;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -17,7 +18,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Data
 @Table
-@Transactional
+@Transactional(isolation = Isolation.READ_COMMITTED)
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Order extends Observable implements Serializable
 {
@@ -45,6 +46,7 @@ public class Order extends Observable implements Serializable
     private transient Set<Ticket> tickets;
 
     private PaymentProvider pAymentProvider;
+
 
     public void setState(OrderState state)
     {

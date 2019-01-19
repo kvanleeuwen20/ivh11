@@ -4,16 +4,18 @@ public abstract class CommunicationHandler
 {
     protected CommunicationData data;
 
-    public void CommunicationHandler()
+    public CommunicationHandler(CommunicationData data)
     {
-        setReceiver();
-        setContent();
-        send();
+        this.data = data;
     }
 
     protected abstract void setReceiver();
 
     protected abstract void setContent();
 
-    protected abstract void send();
+    public final void send()
+    {
+        setReceiver(data);
+        setContent(data);
+    }
 }

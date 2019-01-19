@@ -13,11 +13,13 @@ import javax.validation.constraints.Size;
 @Data
 @ToString(exclude = "screens")
 @Table
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Cinema extends DomainObject
 {
     @Setter(AccessLevel.NONE)
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Column(updatable = false, nullable = false)
     private long id;
 
     @NotNull

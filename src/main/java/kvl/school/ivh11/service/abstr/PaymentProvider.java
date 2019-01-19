@@ -1,12 +1,8 @@
 package kvl.school.ivh11.service.abstr;
 
-import com.jayway.jsonpath.JsonPath;
 import kvl.school.ivh11.domain.Order;
-import org.springframework.http.*;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
-import java.util.Map;
 
 public class PaymentProvider implements PSPContract
 {
