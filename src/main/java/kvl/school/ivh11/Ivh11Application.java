@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
-@SpringBootApplication(scanBasePackages = {"kvl.school.ivh11.controller", "kvl.school.ivh11.service", "kvl.school.ivh11.security"})
+@SpringBootApplication(scanBasePackages = {"kvl.school.ivh11.cnf", "kvl.school.ivh11.web.Controller", "kvl.school.ivh11.controller", "kvl.school.ivh11.service", "kvl.school.ivh11.security"})
 @EntityScan("kvl.school.ivh11")
 @EnableJpaRepositories("kvl.school.ivh11.repository")
 

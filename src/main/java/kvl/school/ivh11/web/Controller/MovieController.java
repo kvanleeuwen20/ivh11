@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Set;
 
 @Controller
@@ -28,10 +27,10 @@ public class MovieController
     public ModelAndView getFilms()
     {
         LocalDateTime ld = LocalDateTime.now();
-        Set<FilmDTO> screenings = filmService.getFilmsPlayingToday(ld.format(DateTimeFormatter.ofPattern("yy-mm-dd")));
+        Set<FilmDTO> films = filmService.getFilmsPlayingToday(ld);
 
         ModelAndView filmVM = new ModelAndView("movies/overview");
-        filmVM.addObject("screening", screenings);
+        filmVM.addObject("films", films);
 
         return filmVM;
     }

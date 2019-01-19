@@ -7,6 +7,7 @@ import kvl.school.ivh11.service.abstr.FilmService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -32,7 +33,7 @@ public class FilmServiceImpl implements FilmService
         return convertToFilmDTOSet(films);
     }
 
-    public Set<FilmDTO> getFilmsPlayingToday(String date)
+    public Set<FilmDTO> getFilmsPlayingToday(LocalDateTime date)
     {
         Set<Film> films = new HashSet<>(repo.getFilmsPlayingToday(date));
         return convertToFilmDTOSet(films);

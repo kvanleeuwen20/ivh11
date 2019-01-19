@@ -23,20 +23,21 @@ public class ThymeleafConfig implements WebMvcConfigurer, ApplicationContextAwar
 
     private ApplicationContext applicationContext;
 
-    public void setApplicationContext(ApplicationContext applicationContext) {
+    public void setApplicationContext(ApplicationContext applicationContext)
+    {
         this.applicationContext = applicationContext;
     }
 
     @Bean
     public ViewResolver viewResolver() {
         ThymeleafViewResolver resolver = new ThymeleafViewResolver();
-        resolver.setTemplateEngine((ISpringTemplateEngine) templateEngine());
+        resolver.setTemplateEngine((ISpringTemplateEngine) customTemplateEngine());
         resolver.setCharacterEncoding("UTF-8");
         return resolver;
     }
 
     @Bean
-    public TemplateEngine templateEngine() {
+    public TemplateEngine customTemplateEngine() {
         SpringTemplateEngine engine = new SpringTemplateEngine();
         engine.setEnableSpringELCompiler(true);
         engine.setTemplateResolver(templateResolver());
