@@ -10,8 +10,10 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
 
+import static javax.persistence.LockModeType.PESSIMISTIC_READ;
+
 public interface FilmRepo extends BaseRepo<Film, Long>
 {
-    @Query("SELECT f FROM Film f INNER JOIN f.screening s WHERE s.startTime >= :date")
+    @Query("SELECT f FROM Film f INNER JOIN f.screening s WHERE s.startTime >= :date", lockMode = PESSIMISTIC_READ)
     Set<Film> getFilmsPlayingToday(@Param("date") LocalDateTime date);
 }

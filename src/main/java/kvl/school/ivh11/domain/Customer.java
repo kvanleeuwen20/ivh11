@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
 import java.util.Set;
 
 @Entity
@@ -16,6 +17,7 @@ public class Customer extends AppUser
 {
     @Getter
     @Setter
+    @Pattern(regexp = "\\\\d{3}-\\\\d{7}")
     private String mobNr;
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)

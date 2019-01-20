@@ -9,6 +9,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.Collection;
 
 @Entity
@@ -20,8 +22,10 @@ public abstract class AppUser implements UserDetails {
     @GeneratedValue(strategy = GenerationType.AUTO)
     protected long id;
 
+    @Size(min=1)
     protected String name;
 
+    @Pattern(regexp = "^(.+)@(.+)$")
     protected String email;
 
     private String username;
