@@ -36,7 +36,8 @@ public class Cinema extends DomainObject
     private transient Set<Screen> screens;
 
     @Tolerate
-    public Cinema() {
+    public Cinema()
+    {
 
     }
 }

@@ -20,15 +20,13 @@ public class MovieController
 {
     private FilmService filmService;
     private Locale locale;
+    private MessageSource messageSource;
 
     @Autowired
     public MovieController(FilmService fs)
     {
         this.filmService = fs;
     }
-
-    @Autowired
-    private MessageSource messageSource;
 
     @RequestMapping(value="/all", method = RequestMethod.GET)
     public ModelAndView getFilms(@RequestParam(name = "lang") String lang)
@@ -43,7 +41,7 @@ public class MovieController
 
         ModelAndView filmVM = new ModelAndView("movies/overview");
         filmVM.addObject("films", films);
-        filmVM.addObject("welcomeTxt", messageSource.getMessage("movies.OverviewPageTxt", null, locale));
+        filmVM.addObject("welcomeTxt", messageSource.getMessage("movies.overviewPageTxt", null, locale));
 
         return filmVM;
     }

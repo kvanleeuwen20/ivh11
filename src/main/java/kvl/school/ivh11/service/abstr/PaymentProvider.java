@@ -1,6 +1,8 @@
 package kvl.school.ivh11.service.abstr;
 
 import kvl.school.ivh11.domain.Order;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.HashMap;
 
@@ -8,6 +10,10 @@ public abstract class PaymentProvider implements PSPContract
 {
     protected HashMap<String, String> cnf;
     private Order order;
+
+    @Getter
+    @Setter
+    protected String name;
 
     public void setConfigParams(HashMap<String, String> cnf)
     {

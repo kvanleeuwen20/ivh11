@@ -14,6 +14,6 @@ import static javax.persistence.LockModeType.PESSIMISTIC_READ;
 
 public interface FilmRepo extends BaseRepo<Film, Long>
 {
-    @Query("SELECT f FROM Film f INNER JOIN f.screening s WHERE s.startTime >= :date", lockMode = PESSIMISTIC_READ)
+    @Query("SELECT f FROM Film f INNER JOIN f.screening s WHERE s.startTime >= :date")
     Set<Film> getFilmsPlayingToday(@Param("date") LocalDateTime date);
 }
