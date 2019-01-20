@@ -9,7 +9,7 @@ import java.util.HashMap;
 public abstract class PaymentProvider implements PSPContract
 {
     protected HashMap<String, String> cnf;
-    private Order order;
+    private kvl.school.ivh11.domain.impl.MovieOrder order;
 
     @Getter
     @Setter
@@ -20,11 +20,11 @@ public abstract class PaymentProvider implements PSPContract
         this.cnf = cnf;
     }
 
-    public void setOrder(Order o)
+    public void setOrder(kvl.school.ivh11.domain.impl.MovieOrder o)
     {
         this.order = o;
     }
-    protected final Order getOrder() { return order; }
+    protected final kvl.school.ivh11.domain.impl.MovieOrder getOrder() { return order; }
 
     protected boolean canCheckout()
     {

@@ -33,6 +33,9 @@ public class ThymeleafConfig implements WebMvcConfigurer, ApplicationContextAwar
         ThymeleafViewResolver resolver = new ThymeleafViewResolver();
         resolver.setTemplateEngine((ISpringTemplateEngine) customTemplateEngine());
         resolver.setCharacterEncoding("UTF-8");
+        resolver.setContentType("text/html;charset=UTF-8");
+        resolver.setCache(false);
+
         return resolver;
     }
 
@@ -41,6 +44,7 @@ public class ThymeleafConfig implements WebMvcConfigurer, ApplicationContextAwar
         SpringTemplateEngine engine = new SpringTemplateEngine();
         engine.setEnableSpringELCompiler(true);
         engine.setTemplateResolver(templateResolver());
+
         return engine;
     }
 
@@ -49,6 +53,9 @@ public class ThymeleafConfig implements WebMvcConfigurer, ApplicationContextAwar
         resolver.setApplicationContext(applicationContext);
         resolver.setPrefix("/WEB-INF/templates/");
         resolver.setTemplateMode(TemplateMode.HTML);
+        resolver.setSuffix(".html");
+        resolver.setCacheTTLMs(3600000L);
+
         return resolver;
     }
 }

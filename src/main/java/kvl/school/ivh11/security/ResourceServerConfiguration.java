@@ -3,6 +3,7 @@ package kvl.school.ivh11.security;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableResourceServer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
@@ -22,13 +23,13 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
     @Override
     public void configure(HttpSecurity http) throws Exception
     {
-//        http.requestMatchers()
-//                .antMatchers(SECURED_PATTERN).and().authorizeRequests()
-//                .antMatchers(HttpMethod.POST, SECURED_PATTERN).access(SECURED_WRITE_SCOPE)
-//                .antMatchers(HttpMethod.GET, UNSECURED_PATH).permitAll()
-//                .anyRequest().access(SECURED_READ_SCOPE);
+        http.requestMatchers()
+                .antMatchers(SECURED_PATTERN).and().authorizeRequests()
+                .antMatchers(HttpMethod.POST, SECURED_PATTERN).access(SECURED_WRITE_SCOPE)
+                .anyRequest().access(SECURED_READ_SCOPE);
+  }
 
-        http.authorizeRequests().antMatchers(HttpMethod.GET,"/films/**").permitAll();
-        http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/movies/**").permitAll();
+  public void configure(WebSecurity web) throws Exception {
+        web.ignoring().antMatchers(UNSECURED_PATH);
   }
 }

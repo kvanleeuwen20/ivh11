@@ -1,0 +1,21 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<body>
+<form action="#" th:action="@{/films/add}" th:object="${filmDto}" method="post">
+    <table>
+        <tr>
+            <td>Film:</td>
+            <td><input type="text" th:field="*{title}" /></td>
+            <td th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Title Error</td>
+        </tr>
+        <tr>
+            <td>Duur:</td>
+            <td><input type="text" th:field="*{duration}" /></td>
+            <td th:if="${#fields.hasErrors('duration')}" th:errors="*{duration}">Duration Error</td>
+        </tr>
+        <tr>
+            <td><button type="submit">Toevoegen</button></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

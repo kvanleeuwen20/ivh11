@@ -37,12 +37,12 @@ public class OrderController
         return null;
     }
 
-    public ModelAndView getOrderSummary()
+    public ModelAndView processOrder(kvl.school.ivh11.domain.impl.MovieOrder order)
     {
         // TODO
         PaymentProxy p = new PaymentProxy();
         JSONPaymentProcessorImpl jsonCallBackImpl = new JSONPaymentProcessorImpl();
-        p.createNewPayment(new Payment(new MolliePSP(jsonCallBackImpl), new Order()));
+        p.createNewPayment(new Payment(new MolliePSP(jsonCallBackImpl), order));
         String returnUrl = p.getCheckOutUrl();
 
         return null;
