@@ -48,7 +48,6 @@ public class AuthServerOAuth2Config extends AuthorizationServerConfigurerAdapter
     }
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        //clients.inMemory().withClient("javainuse-client").secret("javainuse-secret").and().build();
         clients.jdbc(dataSource);
     }
     @Override

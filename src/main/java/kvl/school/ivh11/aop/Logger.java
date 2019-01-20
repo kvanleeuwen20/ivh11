@@ -2,29 +2,29 @@ package kvl.school.ivh11.aop;
 
 public class Logger
 {
-    private static Logger _loggerInstance = null;
+    private static Logger loggerInstance = null;
 
-    public static void Log(String msg)
+    public void log(String message)
     {
-        System.out.print(msg);
+        loggerInstance.log(message);
     }
 
-    public Logger()
+    private Logger()
     {
         getInstance();
     }
 
     private synchronized static void createLoggerInstance ()
     {
-        if (_loggerInstance == null)
-            _loggerInstance = new Logger ();
+        if (loggerInstance == null)
+            loggerInstance = new Logger ();
     }
 
     public static Logger getInstance()
     {
-        if (_loggerInstance == null)
+        if (loggerInstance == null)
             createLoggerInstance();
 
-        return _loggerInstance;
+        return loggerInstance;
     }
 }

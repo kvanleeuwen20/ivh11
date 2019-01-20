@@ -10,6 +10,8 @@ public class MovieOrder extends OrderBuilder
 {
     @Autowired
     TicketRepo ticketRepo;
+
+    @Autowired
     OrderRepo orderRepo;
 
     public void addTicket(Ticket ticket)

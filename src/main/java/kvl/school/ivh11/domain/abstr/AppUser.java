@@ -2,11 +2,13 @@ package kvl.school.ivh11.domain.abstr;
 
 import kvl.school.ivh11.domain.Authority;
 import lombok.Data;
-import lombok.experimental.Tolerate;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToMany;
+import javax.persistence.OrderBy;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.util.Collection;

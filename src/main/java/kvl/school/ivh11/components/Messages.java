@@ -19,7 +19,7 @@ public class Messages {
     @PostConstruct
     private void init(Locale locale)
     {
-        accessor = new MessageSourceAccessor(messageSource, locale.ENGLISH);
+        accessor = new MessageSourceAccessor(messageSource, Locale.ENGLISH);
     }
 
     public String get(String code, Object[] fields, Locale locale) {
