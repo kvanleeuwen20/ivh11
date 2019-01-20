@@ -4,7 +4,6 @@ import kvl.school.ivh11.domain.abstr.AppUser;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NonNull;
-import lombok.Setter;
 import lombok.experimental.Tolerate;
 
 import javax.persistence.CascadeType;
