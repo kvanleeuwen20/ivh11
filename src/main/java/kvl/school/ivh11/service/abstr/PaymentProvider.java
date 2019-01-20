@@ -1,6 +1,6 @@
 package kvl.school.ivh11.service.abstr;
 
-import kvl.school.ivh11.domain.Order;
+import kvl.school.ivh11.domain.im
 import lombok.Getter;
 import lombok.Setter;
 

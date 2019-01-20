@@ -1,4 +1,4 @@
-package kvl.school.ivh11.domain.impl;
+package kvl.school.ivh11.domain.Impl;
 
 import kvl.school.ivh11.domain.*;
 import kvl.school.ivh11.domain.abstr.OrderBuilder;
