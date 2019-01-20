@@ -1,6 +1,6 @@
 package kvl.school.ivh11.service.abstr;
 
-import kvl.school.ivh11.domain.Order;
+import kvl.school.ivh11.domain.impl.MovieOrder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,7 +9,7 @@ import java.util.HashMap;
 public abstract class PaymentProvider implements PSPContract
 {
     protected HashMap<String, String> cnf;
-    private kvl.school.ivh11.domain.impl.MovieOrder order;
+    private MovieOrder order;
 
     @Getter
     @Setter
@@ -20,11 +20,11 @@ public abstract class PaymentProvider implements PSPContract
         this.cnf = cnf;
     }
 
-    public void setOrder(kvl.school.ivh11.domain.impl.MovieOrder o)
+    public void setOrder(MovieOrder o)
     {
         this.order = o;
     }
-    protected final kvl.school.ivh11.domain.impl.MovieOrder getOrder() { return order; }
+    protected final MovieOrder getOrder() { return order; }
 
     protected boolean canCheckout()
     {
