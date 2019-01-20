@@ -48,7 +48,6 @@ public class CinemaServiceTest {
     public void findCinemasWithId() {
         Cinema cinema = this.cinemaService.findCinemasWithId(this.data.getId());
 
-        Assert.assertTrue(true);
-        //Assert.assertEquals(this.data.getCinema(), cinema);
+        Assert.assertEquals(this.data.getCinema(), cinema);
     }
 }
