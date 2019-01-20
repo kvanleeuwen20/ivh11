@@ -1,7 +1,7 @@
 package kvl.school.ivh11.service.impl;
 
 import com.jayway.jsonpath.JsonPath;
-import kvl.school.ivh11.Components.Messages;
+import kvl.school.ivh11.components.Messages;
 import kvl.school.ivh11.domain.Order;
 import kvl.school.ivh11.domain.OrderState;
 import kvl.school.ivh11.service.PaymentResult;

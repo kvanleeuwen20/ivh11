@@ -33,6 +33,7 @@ DROP TABLE IF EXISTS app_user;
 CREATE TABLE app_user (
   dtype varchar(31) NOT NULL,
   id int(11) NOT NULL,
+  version bigint(20) NOT NULL,
   account_expired bit(1) NOT NULL,
   account_locked bit(1) NOT NULL,
   credentials_expired bit(1) NOT NULL,
@@ -41,17 +42,18 @@ CREATE TABLE app_user (
   name varchar(255) DEFAULT NULL,
   password varchar(255) DEFAULT NULL,
   username varchar(255) DEFAULT NULL,
-  employee_number int(11) DEFAULT NULL
+  employee_number int(11) DEFAULT NULL,
+  mob_nr varchar(10) DEFAULT NULL
 );
 
 --
 -- Dumping data for table app_user
 --
 
-INSERT INTO app_user (dtype, id, account_expired, account_locked, credentials_expired, email, enabled, name, password, username, employee_number) VALUES
-('Employee', 1, 0, 0, 0, 'admin@admin.nl', 1, 'Administrator', '$2a$08$qvrzQZ7jJ7oy2p/msL4M0.l83Cd0jNsX6AJUitbgRXGzge4j035ha', 'admin', 76),
-('Customer', 2, 0, 0, 0, 'john@doe.nl', 1, 'John Doe', '$2a$08$qvrzQZ7jJ7oy2p/msL4M0.l83Cd0jNsX6AJUitbgRXGzge4j035ha', 'jdoe62', -1),
-('Customer', 3, 0, 0, 0, 'erikjanssen@xs4all.nl', 1, 'Erik Janssen', '$2a$08$qvrzQZ7jJ7oy2p/msL4M0.l83Cd0jNsX6AJUitbgRXGzge4j035ha', 'Erik_Janssen', -1);
+INSERT INTO app_user (dtype, id, version, account_expired, account_locked, credentials_expired, email, enabled, name, password, username, employee_number, mob_nr) VALUES
+('Employee', 1, 1, 0, 0, 0, 'admin@admin.nl', 1, 'Administrator', '$2a$08$qvrzQZ7jJ7oy2p/msL4M0.l83Cd0jNsX6AJUitbgRXGzge4j035ha', 'admin', 76, null),
+('Customer', 2, 1, 0, 0, 0, 'john@doe.nl', 1, 'John Doe', '$2a$08$qvrzQZ7jJ7oy2p/msL4M0.l83Cd0jNsX6AJUitbgRXGzge4j035ha', 'jdoe62', -1, '0612345678'),
+('Customer', 3, 1, 0, 0, 0, 'erikjanssen@xs4all.nl', 1, 'Erik Janssen', '$2a$08$qvrzQZ7jJ7oy2p/msL4M0.l83Cd0jNsX6AJUitbgRXGzge4j035ha', 'Erik_Janssen', -1, '0646666789');
 
 -- --------------------------------------------------------
 
@@ -88,18 +90,19 @@ INSERT INTO app_user_authorities (app_user_id, authorities_id) VALUES
 DROP TABLE IF EXISTS authority;
 CREATE TABLE authority (
   id bigint(20) NOT NULL,
-  name varchar(255) DEFAULT NULL
+  name varchar(255) DEFAULT NULL,
+  version bigint(20) NOT NULL
 );
 
 --
 -- Dumping data for table authority
 --
 
-INSERT INTO authority (id, name) VALUES
-(4, 'ORDER_READ'),
-(3, 'ORDER_DELETE'),
-(2, 'ORDER_UPDATE'),
-(1, 'ORDER_CREATE');
+INSERT INTO authority (id, name, version) VALUES
+(4, 'ORDER_READ', 1),
+(3, 'ORDER_DELETE', 1),
+(2, 'ORDER_UPDATE', 1),
+(1, 'ORDER_CREATE', 1);
 
 -- --------------------------------------------------------
 
@@ -111,7 +114,8 @@ DROP TABLE IF EXISTS cinema;
 CREATE TABLE cinema (
   id bigint(20) NOT NULL,
   location varchar(255) DEFAULT NULL,
-  name varchar(255) DEFAULT NULL
+  name varchar(255) DEFAULT NULL,
+  version bigint(20) NOT NULL
 );
 
 -- --------------------------------------------------------
@@ -125,7 +129,8 @@ CREATE TABLE film (
   id bigint(20) NOT NULL,
   description varchar(255) DEFAULT NULL,
   duration int(11) NOT NULL,
-  title varchar(255) DEFAULT NULL
+  title varchar(255) DEFAULT NULL,
+  version bigint(20) NOT NULL
 );
 
 -- --------------------------------------------------------
@@ -236,7 +241,8 @@ CREATE TABLE "order" (
   id int(11) NOT NULL,
   order_time datetime DEFAULT NULL,
   state int(11) DEFAULT NULL,
-  customer_id int(11) DEFAULT NULL
+  customer_id int(11) DEFAULT NULL,
+  version bigint(20) NOT NULL
 );
 
 -- --------------------------------------------------------
@@ -248,9 +254,11 @@ CREATE TABLE "order" (
 DROP TABLE IF EXISTS screen;
 CREATE TABLE screen (
   id int(11) NOT NULL,
+  room varchar(255)DEFAULT NULL,
   max_seats int(11) NOT NULL,
   size int(11) NOT NULL,
-  cinema_id bigint(20) DEFAULT NULL
+  cinema_id bigint(20) DEFAULT NULL,
+  version bigint(20) NOT NULL
 );
 
 -- --------------------------------------------------------
@@ -265,7 +273,8 @@ CREATE TABLE screening (
   end_time datetime DEFAULT NULL,
   start_time datetime DEFAULT NULL,
   film_id bigint(20) DEFAULT NULL,
-  screen_id int(11) DEFAULT NULL
+  screen_id int(11) DEFAULT NULL,
+  version bigint(20) NOT NULL
 );
 
 -- --------------------------------------------------------
@@ -279,7 +288,8 @@ CREATE TABLE seat (
   id int(11) NOT NULL,
   isvip bit(1) NOT NULL,
   seat_nr int(11) NOT NULL,
-  screen_id int(11) DEFAULT NULL
+  screen_id int(11) DEFAULT NULL,
+  version bigint(20) not null
 );
 
 -- --------------------------------------------------------
@@ -295,7 +305,8 @@ CREATE TABLE ticket (
   price decimal(19,2) DEFAULT NULL,
   order_id int(11) DEFAULT NULL,
   screening_id bigint(20) DEFAULT NULL,
-  seat_id int(11) DEFAULT NULL
+  seat_id int(11) DEFAULT NULL,
+  version bigint(20) NOT NULL
 );
 
 --

@@ -1,28 +1,26 @@
 package kvl.school.ivh11.domain;
 
-import kvl.school.ivh11.domain.Abstr.DomainObject;
-import lombok.*;
+import kvl.school.ivh11.domain.abstr.DomainObject;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NonNull;
 import lombok.experimental.Tolerate;
 
-import java.time.LocalDateTime;
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
-@Table
-
+@EqualsAndHashCode(callSuper = false)
 /**
  * Vertoning
  */
-@EqualsAndHashCode(callSuper = false)
 public class Screening extends DomainObject
 {
-    @Setter(AccessLevel.NONE)
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
     @NotNull
     @NonNull
     private LocalDateTime startTime;

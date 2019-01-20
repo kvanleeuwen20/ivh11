@@ -1,4 +1,4 @@
-package kvl.school.ivh11.domain.Abstr;
+package kvl.school.ivh11.domain.abstr;
 
 import kvl.school.ivh11.domain.Customer;
 import kvl.school.ivh11.domain.Order;

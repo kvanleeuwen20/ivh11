@@ -1,8 +1,9 @@
 package kvl.school.ivh11.service;
 
-import kvl.school.ivh11.domain.Abstr.AppUser;
+import kvl.school.ivh11.domain.abstr.AppUser;
 import kvl.school.ivh11.repository.AppUserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -12,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Optional;
 
 @Service
+@Qualifier("userDetailsServiceImpl")
 public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     private AppUserRepo repo;

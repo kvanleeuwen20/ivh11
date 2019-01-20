@@ -1,25 +1,11 @@
 package kvl.school.ivh11.domain;
 
 import kvl.school.ivh11.service.abstr.PaymentProvider;
+import lombok.Data;
 
+@Data
 public class Payment
 {
-    private PaymentProvider paymentProvider;
-    private Order order;
-
-    public Payment(PaymentProvider paymentProvider, Order order)
-    {
-        this.paymentProvider = paymentProvider;
-        this.order = order;
-    }
-
-    public Order getOrder()
-    {
-        return order;
-    }
-
-    public PaymentProvider getPaymentProvider()
-    {
-        return paymentProvider;
-    }
+    private final PaymentProvider paymentProvider;
+    private final Order order;
 }

@@ -1,6 +1,6 @@
 package kvl.school.ivh11.repository;
 
-import kvl.school.ivh11.domain.Abstr.AppUser;
+import kvl.school.ivh11.domain.abstr.AppUser;
 
 import java.util.Optional;
 

@@ -1,7 +1,9 @@
 package kvl.school.ivh11.domain;
 
-import kvl.school.ivh11.domain.Abstr.DomainObject;
-import lombok.*;
+import kvl.school.ivh11.domain.abstr.DomainObject;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NonNull;
 import lombok.experimental.Tolerate;
 
 import javax.persistence.*;
@@ -9,16 +11,10 @@ import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
 @Entity
-@Table
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class Ticket extends DomainObject
 {
-    @Setter(AccessLevel.NONE)
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
     @NotNull
     @NonNull
     private BigDecimal price;

@@ -1,10 +1,8 @@
-package kvl.school.ivh11.domain.Abstr;
+package kvl.school.ivh11.domain.abstr;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import kvl.school.ivh11.domain.Authority;
-import lombok.AccessLevel;
 import lombok.Data;
-import lombok.Setter;
+import lombok.experimental.Tolerate;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -13,12 +11,7 @@ import java.util.Collection;
 
 @Entity
 @Data
-public abstract class AppUser implements UserDetails {
-
-    @Setter(AccessLevel.NONE)
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    protected long id;
+public abstract class AppUser extends DomainObject implements UserDetails {
 
     protected String name;
 
@@ -38,7 +31,6 @@ public abstract class AppUser implements UserDetails {
 
     @ManyToMany(fetch = FetchType.EAGER)
     @OrderBy
-    @JsonIgnore
     private Collection<Authority> authorities;
 
     @Override

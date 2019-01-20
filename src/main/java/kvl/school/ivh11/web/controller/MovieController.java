@@ -1,4 +1,4 @@
-package kvl.school.ivh11.web.Controller;
+package kvl.school.ivh11.web.controller;
 
 import kvl.school.ivh11.dto.FilmDTO;
 import kvl.school.ivh11.service.abstr.FilmService;

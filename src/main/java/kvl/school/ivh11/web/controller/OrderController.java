@@ -1,9 +1,8 @@
-package kvl.school.ivh11.web.Controller;
+package kvl.school.ivh11.web.controller;
 
 import kvl.school.ivh11.domain.Order;
 import kvl.school.ivh11.domain.Payment;
 import kvl.school.ivh11.domain.Screening;
-import kvl.school.ivh11.service.abstr.JsonPaymentProcessorStrategy;
 import kvl.school.ivh11.service.abstr.OrderService;
 import kvl.school.ivh11.service.impl.JSONPaymentProcessorImpl;
 import kvl.school.ivh11.service.impl.MolliePSP;

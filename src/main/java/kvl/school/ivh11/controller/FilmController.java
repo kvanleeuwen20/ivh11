@@ -7,8 +7,6 @@ import kvl.school.ivh11.dto.FilmDTO;
 import kvl.school.ivh11.repository.FilmRepo;
 import kvl.school.ivh11.repository.ScreenRepo;
 import kvl.school.ivh11.repository.ScreeningRepo;
-import kvl.school.ivh11.service.FilmService;
-import kvl.school.ivh11.dto.FilmDTO;
 import kvl.school.ivh11.service.abstr.FilmService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
