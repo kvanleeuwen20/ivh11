@@ -1,8 +1,8 @@
 package kvl.school.ivh11.security;
 
-
+import kvl.school.ivh11.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.SecurityProperties;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -20,14 +20,17 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Import(Encoders.class)
 public class ServerSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
+    @Qualifier("userDetailsServiceImpl")
     private UserDetailsService userDetailsService;
     @Autowired
     private PasswordEncoder userPasswordEncoder;
+
     @Override
     @Bean
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(userPasswordEncoder);

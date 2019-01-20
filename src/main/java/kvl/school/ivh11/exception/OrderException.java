@@ -1,4 +1,4 @@
-package kvl.school.ivh11.Exception;
+package kvl.school.ivh11.exception;
 
 public class OrderException extends Exception
 {

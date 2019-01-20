@@ -20,8 +20,10 @@ public class CinemaData {
 
     private final int screenOneMaxSeats = 180;
     private final int screenOneSize = 48;
+    private final String screenOneRoom = "Zaal 1";
     private final int screenTwoMaxSeats = 380;
     private final int screenTwoSize = 64;
+    private final String screenTwoRoom = "Zaal 2";
 
     private final Cinema cinema;
 
@@ -103,10 +105,10 @@ public class CinemaData {
         this.employeeOne = employeeRepo.findById((long) 1).get();
 
         this.cinema = new Cinema(name, location);
-        this.cinema.setScreens(new HashSet<>());
+        this.cinema.setScreens(new HashSet<Screen>());
 
         //-----SCREEN ONE-----
-        this.screenOne = new Screen(screenOneMaxSeats, screenOneSize, cinema);
+        this.screenOne = new Screen(screenOneRoom, screenOneMaxSeats, screenOneSize, cinema);
         this.seatOne = new Seat(10, false, screenOne);
         this.seatTwo = new Seat(11, false, screenOne);
         this.seatThree = new Seat(12, false, screenOne);
@@ -122,7 +124,7 @@ public class CinemaData {
         //-----SCREEN ONE-----
 
         //-----SCREEN TWO-----
-        screenTwo = new Screen(screenTwoMaxSeats, screenTwoSize, cinema);
+        screenTwo = new Screen(screenTwoRoom, screenTwoMaxSeats, screenTwoSize, cinema);
         seatSix = new Seat(10, false, screenTwo);
         seatSeven = new Seat(11, false, screenTwo);
         seatEight = new Seat(12, false, screenTwo);

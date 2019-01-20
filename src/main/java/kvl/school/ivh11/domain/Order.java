@@ -1,9 +1,7 @@
 package kvl.school.ivh11.domain;
 
-
 import java.util.Observable;
 
-import kvl.school.ivh11.service.abstr.PaymentProvider;
 import lombok.*;
 import lombok.experimental.Tolerate;
 import org.springframework.transaction.annotation.Isolation;
@@ -18,21 +16,22 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Data
-@Table
-@Transactional(isolation=Isolation.READ_COMMITTED)
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @EqualsAndHashCode(callSuper = false)
+@Transactional(isolation=Isolation.READ_COMMITTED)
 public class Order extends Observable implements Serializable
 {
     @Setter(AccessLevel.NONE)
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    @Version
+    @Setter(AccessLevel.NONE)
+    private Long version;
 
     @NonNull
     @Getter(AccessLevel.NONE)
     @Setter(AccessLevel.NONE)
-    @Version
     private OrderState state;
 
     @NonNull
@@ -44,8 +43,9 @@ public class Order extends Observable implements Serializable
     @NotNull
     private LocalDateTime orderTime;
 
+    @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "order", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-    private transient Set<Ticket> tickets;
+    private Set<Ticket> tickets;
 
     public void setState(OrderState state)
     {

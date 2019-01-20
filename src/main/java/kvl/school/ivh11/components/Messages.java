@@ -1,4 +1,4 @@
-package kvl.school.ivh11.Components;
+package kvl.school.ivh11.components;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -6,7 +6,6 @@ import org.springframework.context.support.MessageSourceAccessor;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import java.util.ArrayList;
 import java.util.Locale;
 
 @Component

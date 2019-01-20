@@ -1,22 +1,16 @@
 package kvl.school.ivh11.domain;
 
-import lombok.AccessLevel;
+import kvl.school.ivh11.domain.abstr.DomainObject;
 import lombok.Data;
-import lombok.Setter;
+import lombok.EqualsAndHashCode;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
 
 @Entity
 @Data
-public class Authority implements GrantedAuthority {
-
-    @Setter(AccessLevel.NONE)
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
-    private long id;
-
+@EqualsAndHashCode(callSuper = false)
+public class Authority extends DomainObject implements GrantedAuthority {
     @Column(name = "NAME")
     private String name;
 

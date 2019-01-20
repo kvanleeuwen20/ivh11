@@ -1,28 +1,24 @@
 package kvl.school.ivh11.domain;
 
 import com.sun.istack.NotNull;
-import kvl.school.ivh11.domain.Abstr.DomainObject;
-import lombok.*;
+import kvl.school.ivh11.domain.abstr.DomainObject;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NonNull;
 import lombok.experimental.Tolerate;
 
-import java.util.Set;
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Size;
+import java.util.Set;
 
 @Entity
 @Data
-@ToString(exclude = "screens")
-@Table
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @EqualsAndHashCode(callSuper = false)
 public class Cinema extends DomainObject
 {
-    @Setter(AccessLevel.NONE)
-    @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @Column(updatable = false, nullable = false)
-    private Long id;
-
     @NotNull
     @NonNull
     @Size(min = 1, max = 255)
@@ -32,8 +28,9 @@ public class Cinema extends DomainObject
     @NonNull
     private String location;
 
+    @EqualsAndHashCode.Exclude
     @OneToMany(mappedBy = "cinema", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-    private transient Set<Screen> screens;
+    private Set<Screen> screens;
 
     @Tolerate
     public Cinema()

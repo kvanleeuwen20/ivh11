@@ -1,8 +1,8 @@
 package kvl.school.ivh11.service.impl;
 
-import kvl.school.ivh11.Exception.OrderException;
+import kvl.school.ivh11.exception.OrderException;
 import kvl.school.ivh11.domain.*;
-import kvl.school.ivh11.domain.Impl.MovieOrder;
+import kvl.school.ivh11.domain.impl.MovieOrder;
 import kvl.school.ivh11.repository.OrderRepo;
 import kvl.school.ivh11.service.abstr.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ public class OrderServiceImpl implements OrderService
         Ticket ticket = new Ticket();
         ticket.setScreening(screening);
         mvo.addTicket(ticket);
-        mvo.setCustomer(ticket.getId(), new Customer());
+        mvo.setCustomer(ticket.getId(), new Customer("0612345678")); // ToDo
     }
 
 }

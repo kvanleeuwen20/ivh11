@@ -1,7 +1,7 @@
-package kvl.school.ivh11.domain.Impl;
+package kvl.school.ivh11.domain.impl;
 
 import kvl.school.ivh11.domain.*;
-import kvl.school.ivh11.domain.Abstr.OrderBuilder;
+import kvl.school.ivh11.domain.abstr.OrderBuilder;
 import kvl.school.ivh11.repository.OrderRepo;
 import kvl.school.ivh11.repository.TicketRepo;
 import org.springframework.beans.factory.annotation.Autowired;
