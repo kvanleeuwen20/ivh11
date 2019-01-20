@@ -12,19 +12,19 @@ public final class ExecutionTime
 {
     @Pointcut("@annotation(kvl.school.ivh11.*)")
 
-    public void ExecutionTimeAnnotation()
+    public void executionTimeAnnotation()
     {
         // the pointcut signature
     }
 
-    @Around("ExecutionTimeAnnotation()")
+    @Around("executionTimeAnnotation()")
     public Object myExecutionTimeAdvice( ProceedingJoinPoint joinPoint) throws Throwable
     {
         long startMillis = System.currentTimeMillis();
-        Logger.Log("(AOP-myExecTime) Starting timing method " + joinPoint.getSignature());
+        Logger.log("(AOP-myExecTime) Starting timing method " + joinPoint.getSignature());
         Object retVal = joinPoint.proceed();
         long duration = System.currentTimeMillis() - startMillis;
-        Logger.Log("(AOP-myExecTime) Call to " + joinPoint.getSignature() + " took " + duration + " ms");
+        Logger.log("(AOP-myExecTime) Call to " + joinPoint.getSignature() + " took " + duration + " ms");
 
         return retVal;
     }

@@ -24,15 +24,6 @@ import java.util.Set;
 @RequestMapping("/api/movies")
 public class FilmController
 {
-    @Autowired
-    private FilmRepo repo;
-
-    @Autowired
-    private ScreenRepo sRepo;
-
-    @Autowired
-    private ScreeningRepo screeningRepo;
-
     private final FilmService filmService;
 
     @Autowired
@@ -46,19 +37,6 @@ public class FilmController
     {
         HttpHeaders headers = new HttpHeaders();
         headers.add("Content-Type", "application/json");
-
-        Film film = repo.getOne(1l);
-
-        Screen screen = sRepo.getOne(1l);
-        LocalDateTime startTime = LocalDateTime.of(2019, 01, 30, 16, 30, 12);
-        LocalDateTime endTime = LocalDateTime.of(2019, 01, 30, 18, 50, 12);
-
-        Screening s = new Screening(startTime, endTime, film, screen);
-
-        screeningRepo.save(s);
-        screeningRepo.flush();
-
-        System.out.println("OUWEHOER");
 
         return new ResponseEntity<>(filmService.getFilms(), headers, HttpStatus.OK);
     }

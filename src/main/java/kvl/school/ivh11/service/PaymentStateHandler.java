@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class PaymentStateHandler
 {
-    private HashMap<Integer, PaymentState> paymentStateHistory = new HashMap<Integer, PaymentState>();
+    private HashMap<Integer, PaymentState> paymentStateHistory = new HashMap<>();
 
     public void setState(PaymentState state)
     {

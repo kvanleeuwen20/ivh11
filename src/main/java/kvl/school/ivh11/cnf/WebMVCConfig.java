@@ -1,6 +1,5 @@
 package kvl.school.ivh11.cnf;
 
-import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.ui.context.ThemeSource;
