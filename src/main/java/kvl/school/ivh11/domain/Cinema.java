@@ -33,7 +33,8 @@ public class Cinema extends DomainObject
     private Set<Screen> screens;
 
     @Tolerate
-    public Cinema() {
+    public Cinema()
+    {
 
     }
 }

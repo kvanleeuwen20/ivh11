@@ -1,7 +1,29 @@
-<table>
-    <tr data-th-each="film : ${films}">
-        <td data-th-text="${film.title}">...</td>
-        <td data-th-text="${film.duration}">...</td>
-        <td data-th-text="${film.description}">...</td>
-    </tr>
-</table>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Alle films</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
+    <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+${welcomeTxt}
+<div class="container">
+    <h1>Films</h1>
+    <p>
+    <table>
+        <tr data-th-each="film : ${films}">
+            <td data-th-text="${film.title}">...</td>
+            <td data-th-text="${film.duration}">...</td>
+            <td data-th-text="${film.description}">...</td>
+        </tr>
+    </table>
+    </p>
+    <p>
+        <a href="/signup" th:href="@{/signup}" class="btn btn-large btn-success">Sign up</a>
+    </p>
+    <div th:replace="fragments/footer :: footer"></div>
+</div>
+</body>
+</html>

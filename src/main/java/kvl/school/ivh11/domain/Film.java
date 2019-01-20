@@ -10,12 +10,15 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Set;
 
+import static javax.persistence.LockModeType.PESSIMISTIC_READ;
+
 @Entity
 @Data
 @EqualsAndHashCode(callSuper = false)
 @NamedQuery(
         name = "findMoviesByDuration",
-        query = "SELECT f FROM Film f WHERE f.duration LIKE :duration ORDER BY f.duration"
+        query = "SELECT f FROM Film f WHERE f.duration LIKE :duration ORDER BY f.duration",
+        lockMode = PESSIMISTIC_READ
 )
 public class Film extends DomainObject
 {

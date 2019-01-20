@@ -8,9 +8,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Aspect
-public class ExecutionTime
+public final class ExecutionTime
 {
-    @Pointcut("@annotation(sample.web.ui.crosscutting.MyExecutionTime) && execution(* sample.web.ui..*(..))") // the pointcut expression
+    @Pointcut("@annotation(kvl.school.ivh11.*)")
 
     public void ExecutionTimeAnnotation()
     {
@@ -18,13 +18,14 @@ public class ExecutionTime
     }
 
     @Around("ExecutionTimeAnnotation()")
-    public Object myExecutionTimeAdvice( ProceedingJoinPoint joinPoint /*, MyExecutionTime annotation */) throws Throwable
+    public Object myExecutionTimeAdvice( ProceedingJoinPoint joinPoint) throws Throwable
     {
         long startMillis = System.currentTimeMillis();
-        System.out.println("(AOP-myExecTime) Starting timing method " + joinPoint.getSignature());
+        Logger.Log("(AOP-myExecTime) Starting timing method " + joinPoint.getSignature());
         Object retVal = joinPoint.proceed();
         long duration = System.currentTimeMillis() - startMillis;
-        System.out.println("(AOP-myExecTime) Call to " + joinPoint.getSignature() + " took " + duration + " ms");
+        Logger.Log("(AOP-myExecTime) Call to " + joinPoint.getSignature() + " took " + duration + " ms");
+
         return retVal;
     }
 }
