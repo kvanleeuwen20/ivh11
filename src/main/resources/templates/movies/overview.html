@@ -8,10 +8,10 @@
 </head>
 <body>
 <div th:replace="fragments/header :: header"></div>
-${welcomeTxt}
+<p th:text = "#{welcome.text}"></p>
 <div class="container">
     <h1>Films</h1>
-    <p>
+    <div th:if="${not #lists.isEmpty(films)}">
     <table>
         <tr data-th-each="film : ${films}">
             <td data-th-text="${film.title}">...</td>
@@ -19,7 +19,10 @@ ${welcomeTxt}
             <td data-th-text="${film.description}">...</td>
         </tr>
     </table>
-    </p>
+    </div>
+    <div th:if="${#lists.isEmpty(films)}">
+        Helaas, er draaien geen films
+    </div>
     <p>
         <a href="/signup" th:href="@{/signup}" class="btn btn-large btn-success">Sign up</a>
     </p>
