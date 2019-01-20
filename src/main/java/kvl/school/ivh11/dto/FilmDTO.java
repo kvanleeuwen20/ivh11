@@ -3,17 +3,21 @@ package kvl.school.ivh11.dto;
 import kvl.school.ivh11.domain.Film;
 import kvl.school.ivh11.domain.Screening;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
 @Getter
+@Setter
 public class FilmDTO implements Serializable {
     private String title;
     private int duration;
     private String description;
+    private String price;
 
     private Set<ScreeningDTOForFilm> screenings;
 
@@ -23,6 +27,7 @@ public class FilmDTO implements Serializable {
         this.duration = film.getDuration();
         this.description = film.getDescription();
         this.screenings = new HashSet<>();
+        this.price = film.getPrice().toString();
 
         Iterator movies = film.getScreening().iterator();
         while(movies.hasNext())

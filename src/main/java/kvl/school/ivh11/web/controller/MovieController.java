@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.text.NumberFormat;
 import java.time.LocalDateTime;
 import java.util.Locale;
 import java.util.Set;
@@ -26,9 +27,16 @@ public class MovieController
     }
 
     @RequestMapping(value="/all", method = RequestMethod.GET)
-    public ModelAndView getFilms() {
+    public ModelAndView getFilms(Locale locale)
+    {
         LocalDateTime ld = LocalDateTime.now();
         Set<FilmDTO> films = filmService.getFilmsPlayingToday(ld);
+
+        NumberFormat numberFormatLocaleCurrency = NumberFormat.getCurrencyInstance(locale);
+
+        films.forEach((f)->{
+            f.setPrice(numberFormatLocaleCurrency.format(f.getPrice()));
+        });
 
         ModelAndView filmVM = new ModelAndView("movies/overview");
         filmVM.addObject("films", films);

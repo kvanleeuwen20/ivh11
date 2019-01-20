@@ -8,6 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.math.BigDecimal;
 import java.util.Set;
 
 import static javax.persistence.LockModeType.PESSIMISTIC_READ;
@@ -31,6 +32,9 @@ public class Film extends DomainObject
     @NotNull
     @Min(30)
     private int duration;
+
+    @NotNull
+    private BigDecimal price;
 
     private String description;
 
