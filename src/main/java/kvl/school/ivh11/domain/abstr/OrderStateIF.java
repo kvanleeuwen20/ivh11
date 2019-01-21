@@ -1,8 +1,8 @@
 package kvl.school.ivh11.domain.abstr;
 
-import kvl.school.ivh11.domain.impl.MovieOrder;
+import kvl.school.ivh11.domain.Order;
 
 public interface OrderStateIF
 {
-    public void processAction(MovieOrder order);
+    void processAction(Order order);
 }

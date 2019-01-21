@@ -70,18 +70,16 @@ public class CinemaData {
     private final LocalDateTime screeningThreeStartTime = LocalDateTime.of(2019, 1, 28, 20, 30);
     private final LocalDateTime screeningThreeEndTime = LocalDateTime.of(2019, 1, 28, 22, 10);
 
-    private final Order orderOne;
-    private final Order orderTwo;
+  //  private final Order orderOne;
+    //private final Order orderTwo;
 
-    private final OrderState orderOneOrderState = OrderState.PAID;
     private final LocalDateTime orderOneOrderTime = LocalDateTime.of(2019, 1, 12, 16, 51, 31);
 
-    private final OrderState orderTwoOrderState = OrderState.PENDING;
     private final LocalDateTime orderTwoOrderTime = LocalDateTime.of(2019, 1, 12, 22, 10, 49);
 
-    private final Ticket ticketOne;
-    private final Ticket ticketTwo;
-    private final Ticket ticketThree;
+    //private final Ticket ticketOne;
+   // private final Ticket ticketTwo;
+   // private final Ticket ticketThree;
 
     private final BigDecimal ticketOnePrice = new BigDecimal(8.90);
     private final BigDecimal ticketTwoPrice = new BigDecimal(8.90);
@@ -158,14 +156,14 @@ public class CinemaData {
         //-----SCREENINGS-----
 
         //-------ORDERS-------
-        this.orderOne = new Order(this.orderOneOrderState, this.customerOne, this.orderOneOrderTime);
-        this.orderTwo = new Order(this.orderTwoOrderState, this.customerTwo, this.orderTwoOrderTime);
+        //this.orderOne = new Order(this.orderOneOrderState, this.customerOne, this.orderOneOrderTime);
+        //this.orderTwo = new Order(this.orderTwoOrderState, this.customerTwo, this.orderTwoOrderTime);
         //-------ORDERS-------
 
         //-------TICKETS------
-        this.ticketOne = new Ticket(this.ticketOnePrice, this.orderOne, this.screeningOne, this.seatOne);
-        this.ticketTwo = new Ticket(this.ticketTwoPrice, this.orderOne, this.screeningOne, this.seatTwo);
-        this.ticketThree = new Ticket(this.ticketThreePrice, this.orderTwo, this.screeningThree, this.seatTen);
+       // this.ticketOne = new Ticket(this.ticketOnePrice, this.orderOne, this.screeningOne, this.seatOne);
+       // this.ticketTwo = new Ticket(this.ticketTwoPrice, this.orderOne, this.screeningOne, this.seatTwo);
+        //this.ticketThree = new Ticket(this.ticketThreePrice, this.orderTwo, this.screeningThree, this.seatTen);
         //-------TICKETS------
     }
 }

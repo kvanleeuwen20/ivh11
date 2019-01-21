@@ -1,14 +1,9 @@
 package kvl.school.ivh11.service.impl;
 
 import com.jayway.jsonpath.JsonPath;
-import kvl.school.ivh11.components.Messages;
 import kvl.school.ivh11.domain.Order;
-import kvl.school.ivh11.domain.OrderState;
-import kvl.school.ivh11.domain.impl.MovieOrder;
 import kvl.school.ivh11.service.PaymentResult;
-import kvl.school.ivh11.service.abstr.CommunicationHandler;
 import kvl.school.ivh11.service.abstr.JsonPaymentProcessorStrategy;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -23,7 +18,7 @@ public class JSONPaymentProcessorImpl extends JsonPaymentProcessorStrategy {
     }
 
     @Override
-    protected String getCheckOutUrl(MovieOrder o) {
+    protected String getCheckOutUrl(Order o) {
         String response = "";
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.set("Accept", MediaType.APPLICATION_JSON_VALUE);

@@ -56,12 +56,6 @@ public abstract class Order extends Observable implements Serializable
         this.notifyObservers(state);
     }
 
-    protected OrderStateIF getOrderState()
-    {
-        return state;
-    }
-
-
     @Tolerate
     public Order() {
         this.setState(new OrderCreated());

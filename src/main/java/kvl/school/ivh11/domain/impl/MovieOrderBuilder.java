@@ -6,7 +6,7 @@ import kvl.school.ivh11.repository.OrderRepo;
 import kvl.school.ivh11.repository.TicketRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class MovieOrder extends OrderBuilder
+public class MovieOrderBuilder extends OrderBuilder
 {
     @Autowired
     TicketRepo ticketRepo;

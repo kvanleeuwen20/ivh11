@@ -2,7 +2,6 @@ package kvl.school.ivh11.service.impl;
 
 import kvl.school.ivh11.exception.OrderException;
 import kvl.school.ivh11.domain.*;
-import kvl.school.ivh11.domain.impl.MovieOrder;
 import kvl.school.ivh11.repository.OrderRepo;
 import kvl.school.ivh11.service.abstr.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,18 +14,24 @@ public class OrderServiceImpl implements OrderService
 {
     @Autowired
     private OrderRepo orderRepo;
+    private String checkOutUrl;
 
     public OrderServiceImpl(OrderRepo orderRepo) {
         this.orderRepo = orderRepo;
     }
 
-    public void addTicket(Screening screening)
+    @Override
+    public void createOrder(Order order)
     {
-        MovieOrder mvo = new MovieOrder();
-        Ticket ticket = new Ticket();
-        ticket.setScreening(screening);
-        mvo.addTicket(ticket);
-        mvo.setCustomer(ticket.getId(), new Customer("0612345678")); // ToDo
+        order.getState().processAction(order);
+        PaymentProxy p = new PaymentProxy();
+        JSONPaymentProcessorImpl jsonCallBackImpl = new JSONPaymentProcessorImpl();
+        p.createNewPayment(new Payment(new MolliePSP(jsonCallBackImpl), order));
+        this.checkOutUrl = p.getCheckOutUrl();
     }
 
+    public String getCheckOutUrl()
+    {
+        return checkOutUrl;
+    }
 }

@@ -1,10 +1,10 @@
 package kvl.school.ivh11.aop;
 
-public class Logger
+public final class Logger
 {
     private static Logger loggerInstance = null;
 
-    public void log(String message)
+    public static void log(String message)
     {
         loggerInstance.log(message);
     }
@@ -14,10 +14,11 @@ public class Logger
         getInstance();
     }
 
+    //preven thread sync issues
     private synchronized static void createLoggerInstance ()
     {
         if (loggerInstance == null)
-            loggerInstance = new Logger ();
+            loggerInstance = new Logger();
     }
 
     public static Logger getInstance()

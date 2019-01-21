@@ -16,7 +16,6 @@ public abstract class OrderBuilder
 
     public void createNewOrder()
     {
-        order = new Order();
     }
 
     public abstract void setScreening(Long tid, Screening screening);
