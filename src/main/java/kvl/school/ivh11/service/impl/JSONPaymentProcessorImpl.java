@@ -4,6 +4,7 @@ import com.jayway.jsonpath.JsonPath;
 import kvl.school.ivh11.components.Messages;
 import kvl.school.ivh11.domain.Order;
 import kvl.school.ivh11.domain.OrderState;
+import kvl.school.ivh11.domain.impl.MovieOrder;
 import kvl.school.ivh11.service.PaymentResult;
 import kvl.school.ivh11.service.abstr.CommunicationHandler;
 import kvl.school.ivh11.service.abstr.JsonPaymentProcessorStrategy;
@@ -16,16 +17,13 @@ import java.util.*;
 public class JSONPaymentProcessorImpl extends JsonPaymentProcessorStrategy {
     private HashMap<String, String> cnf;
 
-    @Autowired
-    Messages message;
-
     @Override
     protected void setParams(HashMap<String, String> cnf) {
         this.cnf = cnf;
     }
 
     @Override
-    protected String getCheckOutUrl(Order o) {
+    protected String getCheckOutUrl(MovieOrder o) {
         String response = "";
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.set("Accept", MediaType.APPLICATION_JSON_VALUE);
@@ -48,20 +46,7 @@ public class JSONPaymentProcessorImpl extends JsonPaymentProcessorStrategy {
     @Override
     protected void completeRequest(PaymentResult result)
     {
-        if (result.getState().getState() == "PAID")
-        {
-            result.getPayment().getOrder().setState(OrderState.PAID);
-            //in this example we sent a sms
 
-            String messageData[] = {result.getPayment().getOrder().getCustomer().getName(), String.valueOf(result.getPayment().getOrder().getId())};
-            String msg = message.get("smsMessage.sendOrderNotificationWherePaid", messageData, Locale.ENGLISH);
-
-            SmsData data = new SmsData();
-            data.setMessage(msg);
-            data.setReceiver(result.getPayment().getOrder().getCustomer().getMobNr());
-            CommunicationHandler cm = new SmsHandler(data);
-            cm.send();
-        }
     }
 
     private void redirect(Order o) {

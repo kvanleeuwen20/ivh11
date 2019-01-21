@@ -1,6 +1,5 @@
 package kvl.school.ivh11.service.impl;
 
-import kvl.school.ivh11.domain.Order;
 import kvl.school.ivh11.domain.OrderState;
 import kvl.school.ivh11.domain.Payment;
 import kvl.school.ivh11.service.abstr.PSPContract;
@@ -18,7 +17,7 @@ public class PaymentProxy implements PSPContract
     public String getCheckOutUrl()
     {
         String response;
-        if(payment.getOrder().getOrderState() == OrderState.PENDING)
+        if(payment.getOrder().getOrder().getState() == OrderState.PENDING)
             response = "wait";
         else{
             response = payment.getPaymentProvider().getCheckOutUrl();
@@ -32,10 +31,5 @@ public class PaymentProxy implements PSPContract
     public void setConfigParams(HashMap<String, String> cnf)
     {
         payment.getPaymentProvider().setConfigParams(cnf);
-    }
-
-    @Override
-    public void setOrder(Order o) {
-
     }
 }

@@ -2,6 +2,8 @@ package kvl.school.ivh11.domain;
 
 import java.util.Observable;
 
+import kvl.school.ivh11.domain.abstr.OrderStateIF;
+import kvl.school.ivh11.domain.impl.OrderCreated;
 import lombok.*;
 import lombok.experimental.Tolerate;
 import org.springframework.transaction.annotation.Isolation;
@@ -18,7 +20,7 @@ import javax.validation.constraints.NotNull;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Transactional(isolation=Isolation.READ_COMMITTED)
-public class Order extends Observable implements Serializable
+public abstract class Order extends Observable implements Serializable
 {
     @Setter(AccessLevel.NONE)
     @Id
@@ -30,9 +32,9 @@ public class Order extends Observable implements Serializable
     private Long version;
 
     @NonNull
-    @Getter(AccessLevel.NONE)
     @Setter(AccessLevel.NONE)
-    private OrderState state;
+    @Embedded
+    private OrderStateIF state;
 
     @NonNull
     @NotNull
@@ -47,14 +49,14 @@ public class Order extends Observable implements Serializable
     @OneToMany(mappedBy = "order", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     private Set<Ticket> tickets;
 
-    public void setState(OrderState state)
+    public void setState(OrderStateIF state)
     {
         this.state = state;
         this.setChanged();
         this.notifyObservers(state);
     }
 
-    public OrderState getOrderState()
+    protected OrderStateIF getOrderState()
     {
         return state;
     }
@@ -62,7 +64,7 @@ public class Order extends Observable implements Serializable
 
     @Tolerate
     public Order() {
-        
+        this.setState(new OrderCreated());
     }
 
 }

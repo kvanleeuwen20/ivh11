@@ -11,7 +11,7 @@ public class PaymentResult
     private String trixid;
     private LocalDateTime dateTime;
 
-    public void PaymenResult(LocalDateTime dateTime, String trixid, Payment payment, PaymentState state)
+    public PaymentResult(LocalDateTime dateTime, String trixid, Payment payment, PaymentState state)
     {
         this.payment  = payment;
         this.trixid   = trixid;

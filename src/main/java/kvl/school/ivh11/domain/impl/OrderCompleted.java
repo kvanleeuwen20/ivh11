@@ -7,7 +7,7 @@ import javax.naming.Context;
 public class OrderCompleted implements OrderStateIF
 {
     @Override
-    public void processAction(Context context) {
-
+    public void processAction(MovieOrder order) {
+        order.getOrder().setState(this);
     }
 }

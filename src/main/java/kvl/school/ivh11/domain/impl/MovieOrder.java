@@ -1,4 +1,4 @@
-package kvl.school.ivh11.domain.Impl;
+package kvl.school.ivh11.domain.impl;
 
 import kvl.school.ivh11.domain.*;
 import kvl.school.ivh11.domain.abstr.OrderBuilder;
@@ -10,7 +10,6 @@ public class MovieOrder extends OrderBuilder
 {
     @Autowired
     TicketRepo ticketRepo;
-
     @Autowired
     OrderRepo orderRepo;
 

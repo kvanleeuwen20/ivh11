@@ -3,6 +3,7 @@ package kvl.school.ivh11.web.controller;
 import kvl.school.ivh11.domain.Order;
 import kvl.school.ivh11.domain.Payment;
 import kvl.school.ivh11.domain.Screening;
+import kvl.school.ivh11.domain.impl.MovieOrder;
 import kvl.school.ivh11.service.abstr.OrderService;
 import kvl.school.ivh11.service.impl.JSONPaymentProcessorImpl;
 import kvl.school.ivh11.service.impl.MolliePSP;
@@ -37,9 +38,10 @@ public class OrderController
         return null;
     }
 
-    public ModelAndView processOrder(kvl.school.ivh11.domain.impl.MovieOrder order)
+    public ModelAndView processOrder(MovieOrder order)
     {
         // TODO
+        order.getOrder().getState().processAction(order);
         PaymentProxy p = new PaymentProxy();
         JSONPaymentProcessorImpl jsonCallBackImpl = new JSONPaymentProcessorImpl();
         p.createNewPayment(new Payment(new MolliePSP(jsonCallBackImpl), order));
